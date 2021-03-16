@@ -11,8 +11,6 @@ menu:
 math: true
 ---
 
-# Introduction to Deep Learning
-
 ## I. Basic Concepts
 
 ### 1. Fully Connected Feedforward Network
@@ -82,11 +80,12 @@ For Maxout function, we can design the form of activation funcion by our own.
 - How many pieces depending on how many
 elements in a group
 
-***Question 1: How to train Maxout network?*** <br>
+***Question 1: How to train Maxout network?***
+
 ***Answer: 对于每一个神经元，他们先比大小取出较大$z_i$作为输入，再将其对应的linear function拿去作微分***
-<br>
+
 ***Quesion 2:  有些output被舍去之后，back propogation无法再对其进行训练？***
-<br>
+
 ***Answer: We can train different thin and linear network for different example.***
 
 ### 2. Adaptive Learning Rate

@@ -11,7 +11,6 @@ menu:
 math: true
 ---
 
-# Recursive Neural Network
 
 ## I. RNN Structure Overview
 The input is a sequence of vectors.

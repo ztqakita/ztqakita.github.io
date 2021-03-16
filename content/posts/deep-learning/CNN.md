@@ -11,8 +11,6 @@ menu:
 math: true
 ---
 
-# Convolutional Neural Network
-
 ## I. CNN Structure Overview
 ![](/images/posts/DL/CNNS.JPG)
 

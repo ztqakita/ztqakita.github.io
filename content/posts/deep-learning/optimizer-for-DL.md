@@ -10,8 +10,6 @@ menu:
     weight: 10
 math: true
 ---
-
-# New Optimizers for Deep Learning
 > Some Notation: <br>
 > $\theta_t$: model parameter at time step t <br>
 > $\nabla$$L(\theta_t)$ or $g_t$: gradient at $\theta_t$, used to compute $\theta_{t+1}$ <br>
