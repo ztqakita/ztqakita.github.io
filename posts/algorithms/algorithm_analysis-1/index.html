@@ -1,0 +1,153 @@
+<!doctype html><html><head><title>Complexity & Divide and Conquer</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><link rel=stylesheet href=/css/bootstrap.min.css><link rel=stylesheet href=/css/layouts/main.css><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/navigators/navbar.css><link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;500;600" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css><link rel=icon type=image/png href=/images/favicon_hu8376fd15465fef26ffe66b6bcf0ca686_13669_42x0_resize_box_2.png><link rel=stylesheet href=/css/style.css><meta name=description content="Complexity & Divide and Conquer"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css><link rel=stylesheet href=/css/layouts/single.css><link rel=stylesheet href=/css/navigators/sidebar.css></head><body data-spy=scroll data-target=#TableOfContents data-offset=80><div class="container-fluid bg-dimmed wrapper"><nav class="navbar navbar-expand-xl top-navbar final-navbar shadow"><div class=container><button class="navbar-toggler navbar-light" id=sidebar-toggler type=button onclick=toggleSidebar()>
+<span class=navbar-toggler-icon></span></button>
+<a class=navbar-brand href=/><img src=/images/main-logo_hu864bbe108f1be1ae04b57f7f2fd9d631_5637_42x0_resize_box_2.png>ztqakita's Blog</a>
+<button class="navbar-toggler navbar-light" id=toc-toggler type=button onclick=toggleTOC()>
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse lang-selector" id=top-nav-items><ul class="navbar-nav ml-auto"></ul></div></div><img src=/images/main-logo_hu864bbe108f1be1ae04b57f7f2fd9d631_5637_42x0_resize_box_2.png class=d-none id=main-logo>
+<img src=/images/inverted-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_42x0_resize_box_2.png class=d-none id=inverted-logo></nav><section class=sidebar-section id=sidebar-section><div class=sidebar-holder><div class=sidebar id=sidebar><form class=mx-auto method=get action=https://ztqakita.github.io/search><input type=text name=keyword placeholder=Search data-search id=search-box></form><div class=sidebar-tree><ul class=tree id=tree><li id=list-heading><a href=/posts data-filter=all>Posts</a></li><div class=subtree><li><a href=/posts/introduction/>Introduction</a></li><li><i class="fas fa-minus-circle"></i><a class=active href=/posts/algorithms/>Algorithms</a><ul class=active><li><a class=active href=/posts/algorithms/algorithm_analysis-1/>Complexity & Divide and Conquer</a></li><li><a href=/posts/algorithms/algorithm_analysis-2/>Dynamic Programming</a></li><li><a href=/posts/algorithms/algorithm_analysis-3/>Greedy & Back-track & Branch and Bound</a></li></ul></li><li><i class="fas fa-plus-circle"></i><a href=/posts/compiler/>Compiler</a><ul><li><a href=/posts/compiler/compilers_1/>Lexcial Analysis & Parsing</a></li><li><a href=/posts/compiler/compilers_3/>Semantic Analysis & Runtime Environment</a></li><li><a href=/posts/compiler/compilers_2/>Syntax-directed Translation</a></li></ul></li><li><i class="fas fa-plus-circle"></i><a href=/posts/database-system/>Database System</a><ul><li><a href=/posts/database-system/database_system_1/>Database System Lecture Note 1</a></li><li><a href=/posts/database-system/database_system_2/>Database System Lecture Note 2</a></li><li><a href=/posts/database-system/database_system_3/>Database System Lecture Note 3</a></li><li><a href=/posts/database-system/database_system_4/>Database System Lecture Note 4</a></li></ul></li><li><i class="fas fa-plus-circle"></i><a href=/posts/deep-learning/>DL</a><ul><li><a href=/posts/deep-learning/cnn/>Convolutional Neural Network</a></li><li><a href=/posts/deep-learning/introduction-to-deep-learning/>Introduction to Deep Learning</a></li><li><a href=/posts/deep-learning/optimizer-for-dl/>Optimization for Deep Learning</a></li><li><a href=/posts/deep-learning/rnn/>Recursive Neural Network</a></li></ul></li><li><i class="fas fa-plus-circle"></i><a href=/posts/machine-learning/>ML</a><ul><li><a href=/posts/machine-learning/basic-concepts/>Basic Concepts</a></li><li><a href=/posts/machine-learning/classification/>Classification</a></li><li><a href=/posts/machine-learning/perceptron/>Perceptron</a></li></ul></li><li><i class="fas fa-plus-circle"></i><a href=/posts/operating-system/>Operating System</a><ul><li><a href=/posts/operating-system/operating_system_concepts_3/>CPU Scheduling</a></li><li><a href=/posts/operating-system/operating_system_concepts_6/>File System</a></li><li><a href=/posts/operating-system/operating_system_concepts_1/>Introduction & OS Structure</a></li><li><a href=/posts/operating-system/operating_system_concepts_7/>Mass-Storage Structure & I/O System</a></li><li><a href=/posts/operating-system/operating_system_concepts_5/>Memory Management</a></li><li><a href=/posts/operating-system/operating_system_concepts_2/>Process & Threads</a></li><li><a href=/posts/operating-system/operating_system_concepts_4/>Process Synchronization</a></li></ul></li></div></ul></div></div></div></section><section class=content-section id=content-section><div class=content><div class="container p-0 read-area"><div class="hero-area col-sm-12" id=hero-area style=background-image:url(https://ztqakita.github.io/images/default-hero.jpg)></div><div class=page-content><div class="author-profile ml-auto align-self-lg-center"><img class=rounded-circle src=/images/author/ztq.png><h5 class=author-name>Brandon Zhang</h5><p>September 21, 2020</p></div><div class=title><h1>Complexity & Divide and Conquer</h1></div><div class=post-content id=post-content><h1 id=chapter-1>Chapter 1</h1><h2 id=i-算法及算法复杂度>I. 算法及算法复杂度</h2><h3 id=1-definition>1. Definition</h3><ul><li>Input</li><li>Output</li><li>Definiteness</li><li>Finiteness</li><li>Effectiveness</li></ul><blockquote><p>note: <em><strong>program vs algorithm</strong></em>
+program: A program is written in some programming language, and does not have to be finite.
+algorithm: An algorithm can be described by human languages, flow charts, some programming languages, or pseudo-code.</p></blockquote><h3 id=2-算法的评价>2. 算法的评价</h3><ul><li>正确性</li><li>健壮性</li><li><strong>复杂性</strong><ul><li>时间复杂度</li><li>空间复杂度</li></ul></li><li>可读性</li><li>简单性</li></ul><h2 id=ii-算法复杂度分析>II. 算法复杂度分析</h2><h3 id=1-指标>1. 指标</h3><ul><li>平均时间复杂度</li><li>最坏时间复杂度</li></ul><h3 id=2-渐进性复杂度分析>2. 渐进性复杂度分析</h3><p><img src=/images/posts/algo/1.JPG alt>
+基于渐进性原理，可以对两个算法复杂度进行分析。对于求出算法的复杂度，只要求出算法的阶，便可以确定其复杂度。</p><ul><li>Asymptotic Notation
+<img src=/images/posts/algo/2.JPG alt></li></ul><blockquote><p>此处对于各种阶的形象描述，请看PPT对应内容
+大多数情况下，我们分析算法是用大O阶，少数情况用大$\Omega$阶</p></blockquote><p><img src=/images/posts/algo/3.JPG alt></p><h3 id=3-递归方程渐近阶的求解>3. 递归方程渐近阶的求解</h3><h4 id=1-代入法>(1) 代入法</h4><p>对递推关系式估测一个上限，再用数学归纳法证明其正确(高手使用)</p><h4 id=2-迭代法-----较为常用>(2) 迭代法 &mdash; 较为常用</h4><p><em><strong>画图方法</strong></em>
+<img src=/images/posts/algo/4.JPG alt></p><h4 id=3-套用公式法>(3) 套用公式法</h4><p><em><strong>该方法非常不常用，因为有很多的限制条件！！！</strong></em>
+<img src=/images/posts/algo/5.JPG alt></p><h4 id=4-用特征方程解递归方程-----考点>(4) 用特征方程解递归方程 &mdash; 考点</h4><ul><li><p>解题原理：
+1）求解特征方程的根，得到递归方程的通解
+2）利用递归方程初始条件，确定通解中待定系数，得到递归方程的解</p></li><li><p>考虑2种情况：
+1）特征方程的k个根不相同
+2）特征方程有相重的根</p></li></ul><h3 id=4-证明阶关系-----考点>4. 证明阶关系 &mdash; 考点</h3><p>利用$O$阶及$\Omega$阶的定义来进行证明：
+<img src=/images/posts/algo/6.JPG alt></p><h1 id=chapter-2>Chapter 2</h1><h2 id=i-divide-and-conquer>I. Divide and Conquer</h2><ul><li>Balancing 平衡子思想：尽量划分成两个规模相同的子问题</li></ul><h3 id=1-binary-search-code>1. Binary Search Code</h3><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C++ data-lang=C++><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>binarySearch</span>(<span style=color:#66d9ef>int</span> a[], <span style=color:#66d9ef>int</span> x, <span style=color:#66d9ef>int</span> n)
+{
+    <span style=color:#66d9ef>int</span> left <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>, right <span style=color:#f92672>=</span> n<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>;
+    <span style=color:#66d9ef>while</span>(left <span style=color:#f92672>&lt;=</span> right)
+    {
+        <span style=color:#66d9ef>int</span> middle <span style=color:#f92672>=</span> (left <span style=color:#f92672>+</span> right) <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>;
+        <span style=color:#66d9ef>if</span>(a[middle] <span style=color:#f92672>==</span> x)
+            <span style=color:#66d9ef>return</span> middle;
+        <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span>(a[middle] <span style=color:#f92672>&lt;</span> x)
+            left <span style=color:#f92672>=</span> middle <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>;
+        <span style=color:#66d9ef>else</span>
+            right <span style=color:#f92672>=</span> middle <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>;
+    }
+    <span style=color:#66d9ef>return</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>;
+}
+</code></pre></div><ul><li>分析：算法复杂度：$O(logn)$</li></ul><p>之所以可以减少复杂度，是由于在每次划分完子问题之后，我们只对一个子问题进行求解，不去处理另一个子问题(抛弃)，所以会效率会更高。</p><p>思考题：<strong>利用分治法求出数组的最大值和最小值</strong></p><ul><li>结束条件：<ul><li>若子数组长度为1，则该子问题的最大最小值已然确定；</li><li>若子数字长度为2，则该子问题的最大最小值可以一步确定下来；</li></ul></li><li>递归过程：
+将数组分成左右两个部分，分别得出左边和右边的最大最小值，然后进行比较得出哪个最大值更大，哪个最小值最小。</li><li>代码部分：</li></ul><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C++ data-lang=C++><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>findMaxandMin</span>(<span style=color:#66d9ef>int</span> a[], <span style=color:#66d9ef>int</span> left, <span style=color:#66d9ef>int</span> right, <span style=color:#66d9ef>int</span> <span style=color:#f92672>&amp;</span>max, <span style=color:#66d9ef>int</span> <span style=color:#f92672>&amp;</span>min)
+{
+    <span style=color:#66d9ef>if</span>(left <span style=color:#f92672>==</span> right){
+        min <span style=color:#f92672>=</span> a[left];
+        max <span style=color:#f92672>=</span> a[right];
+        <span style=color:#66d9ef>return</span> ;
+    }
+    <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span>(left <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>==</span> right){
+        <span style=color:#66d9ef>if</span>(a[left] <span style=color:#f92672>&gt;</span> a[right]){
+            min <span style=color:#f92672>=</span> a[right];
+            max <span style=color:#f92672>=</span> a[left];
+        }
+        <span style=color:#66d9ef>else</span>
+        {
+            min <span style=color:#f92672>=</span> a[left];
+            max <span style=color:#f92672>=</span> a[right];
+        }
+        <span style=color:#66d9ef>return</span> ;
+    }
+    <span style=color:#66d9ef>else</span>
+    {
+        <span style=color:#66d9ef>int</span> left_min, left_max, right_min, right_max;
+        <span style=color:#66d9ef>int</span> mid <span style=color:#f92672>=</span> (left <span style=color:#f92672>+</span> right) <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>;
+        findMaxandMin(a, left, mid<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, left_min, left_max);
+        findMaxandMin(a, mid, right, right_min, right_max);
+
+        <span style=color:#66d9ef>if</span>(left_min <span style=color:#f92672>&gt;</span> right_min)
+            min <span style=color:#f92672>=</span> right_min;
+        <span style=color:#66d9ef>else</span>
+            min <span style=color:#f92672>=</span> left_min;
+        
+        <span style=color:#66d9ef>if</span>(left_max <span style=color:#f92672>&gt;</span> right_max)
+            max <span style=color:#f92672>=</span> left_max;
+        <span style=color:#66d9ef>else</span>
+            max <span style=color:#f92672>=</span> right_max;
+    }
+}
+</code></pre></div><h3 id=2-大整数乘法>2. 大整数乘法</h3><h3 id=3-strassen-矩阵乘法>3. Strassen 矩阵乘法</h3><h3 id=4-排序>4. 排序</h3><ol><li>评价排序的标准：<ul><li>稳定性</li><li>复杂度</li></ul></li><li>直接插入排序</li></ol><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C++ data-lang=C++><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>insertSort</span>(<span style=color:#66d9ef>int</span> a[], <span style=color:#66d9ef>int</span> n)
+{
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>)
+    {
+        <span style=color:#66d9ef>int</span> temp <span style=color:#f92672>=</span> a[i];
+        <span style=color:#66d9ef>int</span> j <span style=color:#f92672>=</span> i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>;
+        <span style=color:#66d9ef>while</span>(j <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&amp;&amp;</span> temp <span style=color:#f92672>&lt;</span> a[j])
+        {
+            a[j<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> a[j];
+            j<span style=color:#f92672>--</span>;
+        }
+        a[j<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> temp;
+    }
+}
+</code></pre></div><ol start=3><li>归并排序<ul><li>稳定排序</li></ul></li></ol><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C++ data-lang=C++><span style=color:#75715e>//垃圾版
+</span><span style=color:#75715e>//渐进O(nlogn)
+</span><span style=color:#75715e></span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>mergeSort</span>(<span style=color:#66d9ef>int</span> a[], <span style=color:#66d9ef>int</span> left, <span style=color:#66d9ef>int</span> right)
+{
+    <span style=color:#66d9ef>if</span>(left <span style=color:#f92672>!=</span> right){
+        <span style=color:#66d9ef>int</span> mid <span style=color:#f92672>=</span> (left <span style=color:#f92672>+</span> right)<span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>;
+        mergeSort(a, left, mid);        <span style=color:#75715e>//这个过程有必要吗？
+</span><span style=color:#75715e></span>        <span style=color:#75715e>//当然是没必要把n个元素的数组划分为n个只有1个元素的数组
+</span><span style=color:#75715e></span>        mergeSort(a, mid<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>, right);
+        merge(a, left, mid, right);
+    }
+}
+
+<span style=color:#75715e>//升级版
+</span><span style=color:#75715e>//真正的O(nlogn)
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>merge</span>(<span style=color:#66d9ef>int</span> a[], <span style=color:#66d9ef>int</span> b[], <span style=color:#66d9ef>int</span> left, <span style=color:#66d9ef>int</span> mid, <span style=color:#66d9ef>int</span> right)
+{
+    <span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> left, j <span style=color:#f92672>=</span> mid <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>, k <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    <span style=color:#66d9ef>while</span>(i <span style=color:#f92672>&lt;=</span> mid <span style=color:#f92672>&amp;&amp;</span> j <span style=color:#f92672>&lt;=</span> right){
+        <span style=color:#66d9ef>if</span>(a[i] <span style=color:#f92672>&lt;=</span> a[j])
+            b[k<span style=color:#f92672>++</span>] <span style=color:#f92672>=</span> a[i<span style=color:#f92672>++</span>];
+        <span style=color:#66d9ef>else</span>
+            b[k<span style=color:#f92672>++</span>] <span style=color:#f92672>=</span> a[j<span style=color:#f92672>++</span>];
+    }
+    <span style=color:#66d9ef>if</span>(i <span style=color:#f92672>&gt;</span> mid){
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> m <span style=color:#f92672>=</span> j; m <span style=color:#f92672>&lt;=</span> right; m<span style=color:#f92672>++</span>)
+            b[k<span style=color:#f92672>++</span>] <span style=color:#f92672>=</span> a[m];
+    }
+    <span style=color:#66d9ef>else</span>{
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> m <span style=color:#f92672>=</span> i; m <span style=color:#f92672>&lt;=</span> mid; m<span style=color:#f92672>++</span>)
+            b[k<span style=color:#f92672>++</span>] <span style=color:#f92672>=</span> a[m];
+    }
+}
+</code></pre></div><ol start=4><li>快速排序</li></ol><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C++ data-lang=C++><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>partition</span>(<span style=color:#66d9ef>int</span> A[], <span style=color:#66d9ef>int</span> p, <span style=color:#66d9ef>int</span> q)
+{
+
+}
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>quickSort</span>(<span style=color:#66d9ef>int</span> A[], <span style=color:#66d9ef>int</span> p, <span style=color:#66d9ef>int</span> r)
+{
+    <span style=color:#66d9ef>if</span>(p <span style=color:#f92672>&lt;</span> r){
+        q <span style=color:#f92672>=</span> partition(A, p, r);
+        quickSort(A, p, q<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>);
+        quickSort(A, q<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>, r);
+    }
+}
+</code></pre></div><ul><li>复杂度分析：<ul><li>最坏时间复杂度：退化成插入排序，$O(n^2)$</li><li>平均时间复杂度：$O(nlogn)$</li></ul></li></ul><h3 id=5-应用>5. 应用</h3><ol><li><strong>最小线性表选择</strong>
+利用快速排序的Partition函数，通过中间值来寻找第k小元素。</li></ol><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C++ data-lang=C++><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>partition</span>(<span style=color:#66d9ef>int</span> A[], <span style=color:#66d9ef>int</span> p, <span style=color:#66d9ef>int</span> q)
+{
+    <span style=color:#75715e>//快排的partition
+</span><span style=color:#75715e></span>}
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>search</span>(<span style=color:#66d9ef>int</span> A[], <span style=color:#66d9ef>int</span> p, <span style=color:#66d9ef>int</span> r, <span style=color:#66d9ef>int</span> k)
+{
+    <span style=color:#66d9ef>int</span> mid <span style=color:#f92672>=</span> partition(A, p, r);
+    <span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> mid <span style=color:#f92672>-</span> p <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>;            <span style=color:#75715e>//得算一下距离
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>if</span>(k <span style=color:#f92672>&gt;</span> i)
+        search(A, mid<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>, r, k<span style=color:#f92672>-</span>i);
+    <span style=color:#66d9ef>else</span>
+        search(A, p, mid, k);
+}
+</code></pre></div><p>若想在线性的时间内$O(n)$的时间内完成算法，需要让每一次Partition的返回值尽量在Pivot位置。下面是改进的思路：
+<img src=/images/posts/algo/7.JPG alt>
+<img src=/images/posts/algo/8.JPG alt></p><ol start=2><li><strong>最接近点对问题</strong></li></ol><ul><li><p>问题提出：给定平面上n个点找其中的一对点，使得在n个点的所有点对中该点对的距离最小。</p></li><li><p>分治法的思路</p><ol><li>划分成子规模点集 S1 和 S2</li><li>找到 S1 和 S2 的最小距离 d。</li><li>合并 S1 和 S2 ：并利用 d 在 S1 的 (md,m 和 S2 的 m,m+d 中找最大点和最小点，即 p3 和 q3 。选出最小距离，完成合并</li></ol></li></ul><p>对于二维平面的时候，一维空间的合并方法不再适用，下面是二维空间的合并方式：
+<img src=/images/posts/algo/9.JPG alt></p><p>伪代码如下所示：
+<img src=/images/posts/algo/10.JPG alt></p></div><div class=btn-improve-page><a href=https://github.com/ztqakita/ztqakita.github.io/edit//content/posts/algorithms/Algorithm_analysis-1.md><i class="fas fa-code-branch"></i>Improve this page</a></div><hr><div class="row next-prev-navigator"><div class="col-md-6 previous-article"><a href=/posts/compiler/compilers_1/ class="btn btn-outline-info"><span><i class="fas fa-chevron-circle-left"></i>Prev</span><br><span>Lexcial Analysis & Parsing</span></a></div><div class="col-md-6 next-article"><a href=/posts/operating-system/operating_system_concepts_1/ class="btn btn-outline-info"><span>Next <i class="fas fa-chevron-circle-right"></i></span><br><span>Introduction & OS Structure</span></a></div></div><hr></div></div></div><a id=scroll-to-top class=btn><i class="fas fa-chevron-circle-up"></i></a></section><section class=toc-section id=toc-section><div class=toc-holder><h5 class="text-center pl-3">Table of Contents</h5><hr><div class=toc><nav id=TableOfContents><ul><li><a href=#i-算法及算法复杂度>I. 算法及算法复杂度</a><ul><li><a href=#1-definition>1. Definition</a></li><li><a href=#2-算法的评价>2. 算法的评价</a></li></ul></li><li><a href=#ii-算法复杂度分析>II. 算法复杂度分析</a><ul><li><a href=#1-指标>1. 指标</a></li><li><a href=#2-渐进性复杂度分析>2. 渐进性复杂度分析</a></li><li><a href=#3-递归方程渐近阶的求解>3. 递归方程渐近阶的求解</a><ul><li><a href=#1-代入法>(1) 代入法</a></li><li><a href=#2-迭代法-----较为常用>(2) 迭代法 &mdash; 较为常用</a></li><li><a href=#3-套用公式法>(3) 套用公式法</a></li><li><a href=#4-用特征方程解递归方程-----考点>(4) 用特征方程解递归方程 &mdash; 考点</a></li></ul></li><li><a href=#4-证明阶关系-----考点>4. 证明阶关系 &mdash; 考点</a></li></ul></li></ul><ul><li><a href=#i-divide-and-conquer>I. Divide and Conquer</a><ul><li><a href=#1-binary-search-code>1. Binary Search Code</a></li><li><a href=#2-大整数乘法>2. 大整数乘法</a></li><li><a href=#3-strassen-矩阵乘法>3. Strassen 矩阵乘法</a></li><li><a href=#4-排序>4. 排序</a></li><li><a href=#5-应用>5. 应用</a></li></ul></li></ul></nav></div></div></section></div><footer class="container-fluid text-center align-content-center footer pb-2"><div class="container pt-5"><div class="row text-left"><div class="col-md-4 col-sm-12"><h5>Navigation</h5><ul><li class=nav-item><a class=smooth-scroll href=#about>About</a></li><li class=nav-item><a class=smooth-scroll href=#skills>Skills</a></li><li class=nav-item><a class=smooth-scroll href=#experiences>Experiences</a></li><li class=nav-item><a class=smooth-scroll href=#projects>Projects</a></li><li class=nav-item><a class=smooth-scroll href=#recent-posts>Recent Posts</a></li><li class=nav-item><a class=smooth-scroll href=#achievements>Achievements</a></li></ul></div><div class="col-md-4 col-sm-12"><h5>Contact me:</h5><ul><li><span>Email:</span> <span>ztqakita@163.com</span></li><li><span>Phone:</span> <span>(+86)18618180071</span></li></ul></div><div class="col-md-4 col-sm-12"><p>Stay up to date with email notification</p><form><div class=form-group><input type=email class=form-control id=exampleInputEmail1 aria-describedby=emailHelp placeholder="Enter email">
+<small id=emailHelp class="form-text text-muted">We'll never share your email with anyone else.</small></div><button type=submit class="btn btn-info">Submit</button></form></div></div></div><hr><div class=container><div class="row text-left"><div class=col-md-4><a id=theme href=https://github.com/hossainemruz/toha target=#><img src=/images/theme-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_32x0_resize_box_2.png>
+Toha</a></div><div class="col-md-4 text-center">© 2020 Copyright.</div><div class="col-md-4 text-right"><a id=hugo href=https://gohugo.io/>Powered by
+<img src=/images/hugo-logo.svg alt="Hugo Logo" height=18></a></div></div></div></footer><script src=/js/jquery-3.4.1.min.js></script><script src=/js/popper.min.js></script><script src=/js/bootstrap.min.js></script><script src=/js/navbar.js></script><script src=/js/main.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js></script><script src=/js/single.js></script><script>hljs.initHighlightingOnLoad()</script><script type=text/javascript async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">MathJax.Hub.Config({tex2jax:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$']],processEscapes:!0,processEnvironments:!0,skipTags:['script','noscript','style','textarea','pre'],TeX:{equationNumbers:{autoNumber:"AMS"},extensions:["AMSmath.js","AMSsymbols.js"]}}}),MathJax.Hub.Queue(function(){var b=MathJax.Hub.getAllJax(),a;for(a=0;a<b.length;a+=1)b[a].SourceElement().parentNode.className+=' has-jax'}),MathJax.Hub.Config({TeX:{equationNumbers:{autoNumber:"AMS"}}})</script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css integrity=sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js integrity=sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz crossorigin=anonymous></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js integrity=sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI crossorigin=anonymous onload=renderMathInElement(document.body)></script></body></html>

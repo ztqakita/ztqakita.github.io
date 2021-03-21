@@ -1,0 +1,230 @@
+<!doctype html><html><head><title>Process Synchronization</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><link rel=stylesheet href=/css/bootstrap.min.css><link rel=stylesheet href=/css/layouts/main.css><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/navigators/navbar.css><link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;500;600" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css><link rel=icon type=image/png href=/images/favicon_hu8376fd15465fef26ffe66b6bcf0ca686_13669_42x0_resize_box_2.png><link rel=stylesheet href=/css/style.css><meta name=description content="Process Synchronization"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css><link rel=stylesheet href=/css/layouts/single.css><link rel=stylesheet href=/css/navigators/sidebar.css></head><body data-spy=scroll data-target=#TableOfContents data-offset=80><div class="container-fluid bg-dimmed wrapper"><nav class="navbar navbar-expand-xl top-navbar final-navbar shadow"><div class=container><button class="navbar-toggler navbar-light" id=sidebar-toggler type=button onclick=toggleSidebar()>
+<span class=navbar-toggler-icon></span></button>
+<a class=navbar-brand href=/><img src=/images/main-logo_hu864bbe108f1be1ae04b57f7f2fd9d631_5637_42x0_resize_box_2.png>ztqakita's Blog</a>
+<button class="navbar-toggler navbar-light" id=toc-toggler type=button onclick=toggleTOC()>
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse lang-selector" id=top-nav-items><ul class="navbar-nav ml-auto"></ul></div></div><img src=/images/main-logo_hu864bbe108f1be1ae04b57f7f2fd9d631_5637_42x0_resize_box_2.png class=d-none id=main-logo>
+<img src=/images/inverted-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_42x0_resize_box_2.png class=d-none id=inverted-logo></nav><section class=sidebar-section id=sidebar-section><div class=sidebar-holder><div class=sidebar id=sidebar><form class=mx-auto method=get action=https://ztqakita.github.io/search><input type=text name=keyword placeholder=Search data-search id=search-box></form><div class=sidebar-tree><ul class=tree id=tree><li id=list-heading><a href=/posts data-filter=all>Posts</a></li><div class=subtree><li><a href=/posts/introduction/>Introduction</a></li><li><i class="fas fa-plus-circle"></i><a href=/posts/algorithms/>Algorithms</a><ul><li><a href=/posts/algorithms/algorithm_analysis-1/>Complexity & Divide and Conquer</a></li><li><a href=/posts/algorithms/algorithm_analysis-2/>Dynamic Programming</a></li><li><a href=/posts/algorithms/algorithm_analysis-3/>Greedy & Back-track & Branch and Bound</a></li></ul></li><li><i class="fas fa-plus-circle"></i><a href=/posts/compiler/>Compiler</a><ul><li><a href=/posts/compiler/compilers_1/>Lexcial Analysis & Parsing</a></li><li><a href=/posts/compiler/compilers_3/>Semantic Analysis & Runtime Environment</a></li><li><a href=/posts/compiler/compilers_2/>Syntax-directed Translation</a></li></ul></li><li><i class="fas fa-plus-circle"></i><a href=/posts/database-system/>Database System</a><ul><li><a href=/posts/database-system/database_system_1/>Database System Lecture Note 1</a></li><li><a href=/posts/database-system/database_system_2/>Database System Lecture Note 2</a></li><li><a href=/posts/database-system/database_system_3/>Database System Lecture Note 3</a></li><li><a href=/posts/database-system/database_system_4/>Database System Lecture Note 4</a></li></ul></li><li><i class="fas fa-plus-circle"></i><a href=/posts/deep-learning/>DL</a><ul><li><a href=/posts/deep-learning/cnn/>Convolutional Neural Network</a></li><li><a href=/posts/deep-learning/introduction-to-deep-learning/>Introduction to Deep Learning</a></li><li><a href=/posts/deep-learning/optimizer-for-dl/>Optimization for Deep Learning</a></li><li><a href=/posts/deep-learning/rnn/>Recursive Neural Network</a></li></ul></li><li><i class="fas fa-plus-circle"></i><a href=/posts/machine-learning/>ML</a><ul><li><a href=/posts/machine-learning/basic-concepts/>Basic Concepts</a></li><li><a href=/posts/machine-learning/classification/>Classification</a></li><li><a href=/posts/machine-learning/perceptron/>Perceptron</a></li></ul></li><li><i class="fas fa-minus-circle"></i><a class=active href=/posts/operating-system/>Operating System</a><ul class=active><li><a href=/posts/operating-system/operating_system_concepts_3/>CPU Scheduling</a></li><li><a href=/posts/operating-system/operating_system_concepts_6/>File System</a></li><li><a href=/posts/operating-system/operating_system_concepts_1/>Introduction & OS Structure</a></li><li><a href=/posts/operating-system/operating_system_concepts_7/>Mass-Storage Structure & I/O System</a></li><li><a href=/posts/operating-system/operating_system_concepts_5/>Memory Management</a></li><li><a href=/posts/operating-system/operating_system_concepts_2/>Process & Threads</a></li><li><a class=active href=/posts/operating-system/operating_system_concepts_4/>Process Synchronization</a></li></ul></li></div></ul></div></div></div></section><section class=content-section id=content-section><div class=content><div class="container p-0 read-area"><div class="hero-area col-sm-12" id=hero-area style=background-image:url(https://ztqakita.github.io/images/default-hero.jpg)></div><div class=page-content><div class="author-profile ml-auto align-self-lg-center"><img class=rounded-circle src=/images/author/ztq.png><h5 class=author-name>Brandon Zhang</h5><p>October 14, 2020</p></div><div class=title><h1>Process Synchronization</h1></div><div class=post-content id=post-content><h1 id=chapter-6-process-synchronization>Chapter 6 Process Synchronization</h1><h2 id=61-background>6.1 Background</h2><h3 id=611-shared-resources>6.1.1 Shared resources</h3><p><strong>Def:</strong></p><ul><li>the resources (e.g., data, CPU, I/O ports, memory) that can be accessed by several cooperating processes <strong>concurrently</strong></li><li>the shared resources cannot be used by several processes simultaneously (or in parallel), only be used <strong>mutual exclusively</strong>(互斥)</li></ul><p>信号量的三种用法：</p><ol><li><strong>资源互斥使用</strong>：资源只有1个实例，各个进程通过二元信号量mutex互斥地进入临界区，使用资源。
+Mutex：代表资源的控制权，初值为1。<ul><li>mutex = 1：buffer空闲</li><li>mutex = 0：buffer阻塞</li></ul></li><li><strong>资源竞争使用</strong>：
+资源有多个实例，允许多个进程竞争使用资源。
+多元信号量表示：(1)资源可用数目，(2)资源使用权
+e.g. empty, full</li><li><strong>进程间同步</strong>：
+进程间的执行步骤需要有先后顺序关系
+同步二元信号sync，初值为0<ul><li>sync = 0：未开始跑</li><li>sync = 1：前面进程跑完</li></ul></li></ol><h3 id=612-producer-consumer-problem>6.1.2 Producer-Consumer Problem</h3><p>又名Bounded-Buffer problem。</p><ul><li><strong>Atomic operation</strong>: an operation that completes in its entirely without interruption. Otherwise, data inconsistency will occur.</li></ul><p>Consider this situation:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C++ data-lang=C++><span style=color:#75715e>//Producer process
+</span><span style=color:#75715e></span><span style=color:#66d9ef>while</span> (<span style=color:#ae81ff>1</span>) {
+    <span style=color:#75715e>/* producing an item in nextProduced */</span>
+    <span style=color:#66d9ef>while</span> (counter <span style=color:#f92672>==</span> BUFFER_SIZE)
+      ; <span style=color:#75715e>/* do nothing */</span>
+    buffer[in] <span style=color:#f92672>=</span> nextProduced;
+    in <span style=color:#f92672>=</span> (in <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>%</span> BUFFER_SIZE;
+    counter<span style=color:#f92672>++</span>;
+}
+
+<span style=color:#75715e>//Consumer process 
+</span><span style=color:#75715e></span><span style=color:#66d9ef>while</span> (<span style=color:#ae81ff>1</span>) {
+    <span style=color:#66d9ef>while</span> (counter <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>)
+      ; <span style=color:#75715e>/* do nothing */</span>
+    nextConsumed <span style=color:#f92672>=</span> buffer[out];
+    out <span style=color:#f92672>=</span> (out <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>%</span> BUFFER_SIZE;
+    counter<span style=color:#f92672>--</span>;
+    <span style=color:#75715e>/* consume the item in nextConsumed */</span>
+}
+</code></pre></div><p>If the producer and the consumer access <strong>counter</strong> concurrently, data consistency can NOT be maintained.</p><p><strong>Race condition:</strong></p><ul><li>the situation where several processes access and manipulate shared data concurrently</li><li>the final value of the shared data depends upon which process finishes last</li></ul><h2 id=62-the-critical-section-problem>6.2 The Critical-Section Problem</h2><h3 id=621-concepts>6.2.1 Concepts</h3><ol><li><p>Critical section(临界区)
+each process has a code segment, called critical section, in which the <strong>shared data is accessed</strong></p></li><li><p>Critical resources
+resources accessed by Critical section.
+要求：保证该进程进入临界区时，没有其他进程在访问。</p></li></ol><h3 id=622-general-structure-of-process>6.2.2 General structure of process</h3><p><img src=/images/posts/OS/41.jpg alt></p><h3 id=623-solution-to-critical-section-problem>6.2.3 Solution to Critical-Section Problem</h3><ol><li>Mutual exclusion
+if process Pi is executing in its critical section specific to the resource R, then no other processes can be executing in their critical sections specific to R.</li><li>Progress<ul><li>只考虑那些正处于entry(申请进入)、critical sections和exit sections 的进程。</li><li>挑选过程不应被无限期阻止</li></ul></li><li>Bounded Waiting
+a bound or limit must exist on <strong>the number of times</strong> that other processes are allowed to enter their critical sections <em>after a process has made a request to enter its critical section and before that request is granted</em>.<blockquote><p>为了避免starvation</p></blockquote></li></ol><blockquote><p>note：进程在临界段内只应停留有限时间，不然会导致其他进程饿死。</p></blockquote><h2 id=63-peterson-solution>6.3 Peterson Solution</h2><p>Peterson&rsquo;s solution is restricted to <strong>two processes</strong> that alternate execution between their critical sections and remainder sections.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C++ data-lang=C++><span style=color:#66d9ef>int</span> turn;     <span style=color:#75715e>//资源访问权
+</span><span style=color:#75715e></span><span style=color:#66d9ef>bool</span> flag[<span style=color:#ae81ff>2</span>]; <span style=color:#75715e>//ready to enter its critical section
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>// for process Pi
+</span><span style=color:#75715e></span><span style=color:#66d9ef>do</span> {
+  flag[i] <span style=color:#f92672>=</span> true;  <span style=color:#75715e>/*表明自身请求进入临界区*/</span>
+  turn <span style=color:#f92672>=</span> j;        <span style=color:#75715e>/*假设先轮到对方进入临界区 */</span>
+  <span style=color:#66d9ef>while</span> (flag [j] and turn <span style=color:#f92672>=</span> j) 
+   {  <span style=color:#66d9ef>do</span><span style=color:#f92672>-</span>nothing  };  
+    <span style=color:#75715e>/*对方正在临界区中, Pi忙等待*/</span>
+
+  critical section
+
+  flag [i] <span style=color:#f92672>=</span> false  <span style=color:#75715e>/*表明自身不再需要进入临界区*/</span>
+
+  remainder section
+} <span style=color:#66d9ef>while</span> (<span style=color:#ae81ff>1</span>);
+</code></pre></div><p><img src=/images/posts/OS/42.jpg alt></p><h3 id=631-busy-waiting>6.3.1 Busy-waiting</h3><p>Pi alternatively stays in running and ready states. (一直处于running态，无法进入waiting态)
+Example：
+<img src=/images/posts/OS/43.jpg alt>
+问题分析：在ts[3]时间片中，此时flag[j]=true, turn=i, 导致while循环无法进入，直接进入临界区执行；但并没有执行完，时间片用完强行切换到下一个进程。在ts[4]时间片中，此时flag[i]=true, turn=i, 满足while循环条件，则一直处于<strong>忙等待状态</strong>。
+解决办法：将running改为waiting，第4片给Pi，这样避免忙等待。</p><h3 id=632-bakery-algorithm>6.3.2 Bakery Algorithm</h3><p>A software solution for synchronize among <em><strong>n processes.</strong></em>
+Principles:</p><ul><li>before entering its critical section, process receives a <strong>number</strong> (denoted for ticket #,)</li><li>the holder of the <em><strong>smallest number</strong></em> enters the critical section.</li><li>if processes Pi and Pj receive the same number, if i &lt; j, then Pi is served first; else Pj is served first.</li><li>the <em><strong>numbering scheme</strong></em> always generates numbers in increasing order of enumeration; i.e., 1,2,3,3,3,3,4,5&mldr;</li></ul><blockquote><p>利用二元组比大小：(a, b) &lt; (c, d)</p></blockquote><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C++ data-lang=C++><span style=color:#66d9ef>bool</span> choosing[n];         
+<span style=color:#75715e>/* Pi begins/wants to apply for ticket*/</span> 
+<span style=color:#66d9ef>int</span> number[n];            
+<span style=color:#75715e>/* for Pi, number[i]&gt;0 表示Pi需要进入临界区: */</span>
+
+<span style=color:#66d9ef>do</span> {
+    choosing[i] <span style=color:#f92672>=</span> true;    
+    <span style=color:#75715e>/*begin to apply for ticket*/</span>
+    number[i] 
+        <span style=color:#f92672>=</span> max(number[<span style=color:#ae81ff>0</span>], number[<span style=color:#ae81ff>1</span>], <span style=color:#960050;background-color:#1e0010>…</span>, number[n <span style=color:#960050;background-color:#1e0010>–</span> <span style=color:#ae81ff>1</span>]) <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>;
+    <span style=color:#75715e>//分配新的number，要求number单调不减
+</span><span style=color:#75715e></span>
+    choosing[i] <span style=color:#f92672>=</span> false;    <span style=color:#75715e>/* end application */</span>
+
+    <span style=color:#66d9ef>for</span> (j <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; j <span style=color:#f92672>&lt;</span> n; j<span style=color:#f92672>++</span>)           <span style=color:#75715e>/*考虑所有进程*/</span>
+    {               
+        <span style=color:#66d9ef>while</span> (choosing[j]) ;    <span style=color:#75715e>/*如有其它进程正在申请ticket,等待Pj
+</span><span style=color:#75715e>                                                        申请完*/</span>
+        <span style=color:#66d9ef>while</span> ((number[j] <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>) <span style=color:#f92672>&amp;&amp;</span>  {(number[j], j) <span style=color:#f92672>&lt;</span> (number[i,], i)}) ;   
+        <span style=color:#75715e>/*如有票号小于自身的其它进程Pj 正在或等待运行，
+</span><span style=color:#75715e>        等待Pj访问完*/</span>
+        <span style=color:#75715e>//此处是二元组判断
+</span><span style=color:#75715e></span>    }
+
+    critical section;
+
+    number[i] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;    <span style=color:#75715e>//丢弃票，退出临界区
+</span><span style=color:#75715e></span>
+    remainder section;
+
+}<span style=color:#66d9ef>while</span>(<span style=color:#ae81ff>1</span>);
+
+</code></pre></div><h2 id=64-synchronization-hardware>6.4 Synchronization Hardware</h2><h3 id=641-principles-of-testandset-instruction-and-swap-instruction>6.4.1 Principles of TestAndSet Instruction and Swap Instruction</h3><ul><li>每个临界资源设置一个布尔变量lock，初值为false；lock用机器字来实现</li><li>CPU提供专门的硬件指令TestAndSet 或Swap，允许对一个字的内容进行检测和修正，或交换两个字的内容</li><li>硬件指令可以解决共享变量的完整性和正确性，防止出现race condition</li></ul><h3 id=642-principles-of-interrupt-masking-based-hardware-synchronization>6.4.2 Principles of Interrupt masking based hardware synchronization</h3><ul><li>“开关中断”指令保证用户态下的进程在临界区执行时不被其它进程中断,从而实现多个进程互斥访问临界区</li><li>进入临界区前执行：“关中断”指令</li><li>离开临界区后执行：执行“开中断”指令</li></ul><h2 id=65-semaphores>6.5 Semaphores</h2><h3 id=651-background>6.5.1 Background</h3><ol><li><strong>Def:</strong> 由操作系统在<strong>内核空间</strong>提供的一种用于多个合作进程间==同步与互斥==的机制。</li></ol><blockquote><p>信号量也被称为锁(lock)，但锁专指<em>二元信号量</em>。</p></blockquote><ol start=2><li><strong>Wait() / P()</strong>
+请求分配一个单位的资源S给执行wait操作的进程</li></ol><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C data-lang=C>wait(S)   <span style=color:#75715e>//这种进程仍会有忙等待的问题
+</span><span style=color:#75715e></span>{
+    <span style=color:#66d9ef>while</span>(S <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>0</span>)
+        <span style=color:#66d9ef>do</span> no<span style=color:#f92672>-</span>op;
+    S<span style=color:#f92672>--</span>;
+}
+</code></pre></div><ol start=3><li><strong>Signal() / V()</strong>
+进程释放一个单位的资源S</li></ol><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C data-lang=C>signal(S) 
+{
+    S<span style=color:#f92672>++</span>;
+}
+</code></pre></div><p>These two operations are performed <strong>atomatically</strong>.</p><h3 id=652-usage>6.5.2 Usage</h3><p>Two types of semaphores:</p><ul><li>counting semaphore (计数、一般信号量)</li><li>binary semaphore (二元信号量，又称互斥锁)</li></ul><ol><li><strong>Mutual exclusion</strong>
+semaphore mutex: 1 资源可用，0 资源不可用</li></ol><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C data-lang=C><span style=color:#75715e>//Process Pi: 
+</span><span style=color:#75715e></span><span style=color:#66d9ef>do</span> {
+    wait(mutex);
+    <span style=color:#75715e>//critical section
+</span><span style=color:#75715e></span>    signal(mutex);
+    <span style=color:#75715e>//remainder section
+</span><span style=color:#75715e></span>} <span style=color:#66d9ef>while</span> (<span style=color:#ae81ff>1</span>);
+</code></pre></div><ol start=2><li><strong>Synchronizing</strong>
+semaphore synch</li></ol><pre><code>P1: M1;
+    S1;
+    signal(synch);  // 0-&gt;1
+P2: M2;
+    wait(synch);    // 1-&gt;0, P1执行完后执行S2
+    S2;
+</code></pre><blockquote><p>PPT中的例子记得看！400米接力跑</p></blockquote><h3 id=653-semaphores-without-busy-waiting>6.5.3 Semaphores without busy waiting</h3><p>Two simple operations:</p><ul><li><strong>block()</strong>: The process are changed from running to waiting. (挂起)</li><li><strong>wakeup()</strong>: Resumes the execution of a blocked process P. (唤醒)</li></ul><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C data-lang=C><span style=color:#75715e>//多元信号量版本
+</span><span style=color:#75715e></span>wait(S)  
+{		
+    S.value<span style=color:#f92672>--</span>;            <span style=color:#75715e>/*申请一个单位的资源*/</span>
+    <span style=color:#66d9ef>if</span> (S.value <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0</span>) {    <span style=color:#75715e>/*无可用资源*/</span>
+      add this process to S.list;				
+      block();
+    }
+}
+
+Signal(S) 
+{	        
+    S.value<span style=color:#f92672>++</span>;         <span style=color:#75715e>/*释放一个单位的资源*/</span>
+    <span style=color:#66d9ef>if</span> (S.value <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>0</span>)  <span style=color:#75715e>/*仍有被阻塞进程*/</span>
+    {
+      remove a process P from S.list;
+      wakeup(P);       <span style=color:#75715e>/*唤醒被阻塞进程*/</span>
+    }
+}
+</code></pre></div><h3 id=654-deadlock-and-starvation>6.5.4 Deadlock and Starvation</h3><ol><li>Example of deadlock
+<img src=/images/posts/OS/44.jpg alt></li></ol><h2 id=66-classical-problems-of-synchronization>6.6 Classical Problems of Synchronization</h2><p>此处只列举典型问题及其应用的简单描述，具体分析过程及答案请详见叶文版PPT 6-例题与作业</p><ol><li><p>Bounded-Buffer Problem</p><ul><li>producer-consumer problem</li><li>和尚取水问题
+此问题要归结为两个生产者消费者问题</li><li>Extended problem:<ol><li>One producer and one consumer are permitted to <strong>simultaneously</strong> enter their critical sections to access the buffer.
+<em><strong>mutex1 for producer, mutex2 for consumer</strong></em></li><li>&ldquo;父母-子女-橘子/苹果"问题</li><li>多条串行生产线/流程中的中间工序
+<em>process 同时具有生产者、消费者的角色</em></li><li>生产者每次向buffer放入m (>2)个数据项，消费者每次只消费1个数据项 [或：消费者每次消费n个数据项]；
+<em><strong>设置计数变量count和mutex2，替代empty的计数功能，控制生产者</strong></em></li></ol></li></ul></li><li><p>Readers-Writers Problem</p><ul><li>Soldiers in two queues, passing a bridge</li><li>过桥问题</li><li>最多允许M个读者同时读</li><li>每当M个读者依次读完后，应允许写者进入临界段</li><li>最多允许M个读者同时读，或者最多允许N个写者同时写</li><li>控制队列中读者数目</li><li>写者/读者公平竞争
+通过添加优先信号量wp</li><li>写者/读者优先</li></ul></li><li><p>Dining-Philosophers Problem</p><ul><li>多类型资源申请</li></ul><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C++ data-lang=C++><span style=color:#66d9ef>int</span> Mnum <span style=color:#f92672>=</span> <span style=color:#ae81ff>3</span>, IOnum <span style=color:#f92672>=</span> <span style=color:#ae81ff>3</span>;
+semaphore self[<span style=color:#ae81ff>6</span>];
+semaphore mutex <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+<span style=color:#66d9ef>enum</span> {idle, apply, running} state[<span style=color:#ae81ff>6</span>];
+   
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>process</span>(<span style=color:#66d9ef>int</span> i)
+{
+    <span style=color:#66d9ef>while</span>(<span style=color:#ae81ff>1</span>)
+    {
+        idle();
+        apply(i);
+        running();
+        release(i);
+    }
+}
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>apply</span>(<span style=color:#66d9ef>int</span> i)
+{
+    wait(mutex);
+    state[i] <span style=color:#f92672>=</span> apply;
+    test(i);
+    signal(mutex);    <span style=color:#75715e>//这里的释放顺序很重要，互换会导致死锁
+</span><span style=color:#75715e></span>    wait(self[i]);  
+}
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>test</span>(<span style=color:#66d9ef>int</span> i)
+{
+    <span style=color:#66d9ef>if</span>(Mnum <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&amp;&amp;</span> IOnum <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&amp;&amp;</span> state[i] <span style=color:#f92672>==</span> apply)
+    {
+        state[i] <span style=color:#f92672>=</span> running;
+        Mnum<span style=color:#f92672>--</span>;
+        IOnum<span style=color:#f92672>--</span>;
+        signal(self[i]);
+    }
+}
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>release</span>(<span style=color:#66d9ef>int</span> i)
+{
+    wait(mutex);
+    state[i] <span style=color:#f92672>=</span> idle;
+    Mnum<span style=color:#f92672>++</span>;
+    IOnum<span style=color:#f92672>++</span>;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>;i<span style=color:#f92672>&lt;</span><span style=color:#ae81ff>6</span>;i<span style=color:#f92672>++</span>)
+        test(i);
+    signal(mutex);
+}
+</code></pre></div></li><li><p>The sleeping-barber problem
+问题特点：
+（1）资源竞争
+顾客竞争chairs
+顾客竞争barbers<br>（2）同步
+顾客-barber</p></li></ol><p>The basic version:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C++ data-lang=C++><span style=color:#75715e>#define CHAIR 5
+</span><span style=color:#75715e></span>semaphore barber <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>, customer <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>; <span style=color:#75715e>//这对信号量很关键
+</span><span style=color:#75715e></span>semaphore mutex <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+<span style=color:#66d9ef>int</span> waiting <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>barber</span>()
+{
+    wait(customer);
+    wait(mutex);
+    waiting<span style=color:#f92672>--</span>;
+    signal(mutex);
+    signal(barber);
+    cuthair();
+}
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>customer</span>()
+{
+    wait(mutex);
+    <span style=color:#66d9ef>if</span>(waiting <span style=color:#f92672>&lt;</span> CHAIR)
+    {
+        waiting<span style=color:#f92672>++</span>;
+        signal(customer);   <span style=color:#75715e>//通知理发师有顾客
+</span><span style=color:#75715e></span>        signal(mutex);
+
+        wait(barber);
+        getcut();
+    }
+    <span style=color:#66d9ef>else</span>
+    {
+        signal(mutex);      <span style=color:#75715e>//离开店铺
+</span><span style=color:#75715e></span>    }
+}
+</code></pre></div><h2 id=67-monitors-管程>6.7 Monitors (管程)</h2><p>第一题：选择题
+第二题：简答题——概念，用硬件命令实现互斥
+第三题：大题：调度、信号量、死锁(银行家算法)</p></div><div class=btn-improve-page><a href=https://github.com/ztqakita/ztqakita.github.io/edit//content/posts/operating-system/Operating_System_Concepts_4.md><i class="fas fa-code-branch"></i>Improve this page</a></div><hr><div class="row next-prev-navigator"><div class="col-md-6 previous-article"><a href=/posts/deep-learning/rnn/ class="btn btn-outline-info"><span><i class="fas fa-chevron-circle-left"></i>Prev</span><br><span>Recursive Neural Network</span></a></div><div class="col-md-6 next-article"><a href=/posts/operating-system/operating_system_concepts_3/ class="btn btn-outline-info"><span>Next <i class="fas fa-chevron-circle-right"></i></span><br><span>CPU Scheduling</span></a></div></div><hr></div></div></div><a id=scroll-to-top class=btn><i class="fas fa-chevron-circle-up"></i></a></section><section class=toc-section id=toc-section><div class=toc-holder><h5 class="text-center pl-3">Table of Contents</h5><hr><div class=toc><nav id=TableOfContents><ul><li><a href=#61-background>6.1 Background</a><ul><li><a href=#611-shared-resources>6.1.1 Shared resources</a></li><li><a href=#612-producer-consumer-problem>6.1.2 Producer-Consumer Problem</a></li></ul></li><li><a href=#62-the-critical-section-problem>6.2 The Critical-Section Problem</a><ul><li><a href=#621-concepts>6.2.1 Concepts</a></li><li><a href=#622-general-structure-of-process>6.2.2 General structure of process</a></li><li><a href=#623-solution-to-critical-section-problem>6.2.3 Solution to Critical-Section Problem</a></li></ul></li><li><a href=#63-peterson-solution>6.3 Peterson Solution</a><ul><li><a href=#631-busy-waiting>6.3.1 Busy-waiting</a></li><li><a href=#632-bakery-algorithm>6.3.2 Bakery Algorithm</a></li></ul></li><li><a href=#64-synchronization-hardware>6.4 Synchronization Hardware</a><ul><li><a href=#641-principles-of-testandset-instruction-and-swap-instruction>6.4.1 Principles of TestAndSet Instruction and Swap Instruction</a></li><li><a href=#642-principles-of-interrupt-masking-based-hardware-synchronization>6.4.2 Principles of Interrupt masking based hardware synchronization</a></li></ul></li><li><a href=#65-semaphores>6.5 Semaphores</a><ul><li><a href=#651-background>6.5.1 Background</a></li><li><a href=#652-usage>6.5.2 Usage</a></li><li><a href=#653-semaphores-without-busy-waiting>6.5.3 Semaphores without busy waiting</a></li><li><a href=#654-deadlock-and-starvation>6.5.4 Deadlock and Starvation</a></li></ul></li><li><a href=#66-classical-problems-of-synchronization>6.6 Classical Problems of Synchronization</a></li><li><a href=#67-monitors-管程>6.7 Monitors (管程)</a></li></ul></nav></div></div></section></div><footer class="container-fluid text-center align-content-center footer pb-2"><div class="container pt-5"><div class="row text-left"><div class="col-md-4 col-sm-12"><h5>Navigation</h5><ul><li class=nav-item><a class=smooth-scroll href=#about>About</a></li><li class=nav-item><a class=smooth-scroll href=#skills>Skills</a></li><li class=nav-item><a class=smooth-scroll href=#experiences>Experiences</a></li><li class=nav-item><a class=smooth-scroll href=#projects>Projects</a></li><li class=nav-item><a class=smooth-scroll href=#recent-posts>Recent Posts</a></li><li class=nav-item><a class=smooth-scroll href=#achievements>Achievements</a></li></ul></div><div class="col-md-4 col-sm-12"><h5>Contact me:</h5><ul><li><span>Email:</span> <span>ztqakita@163.com</span></li><li><span>Phone:</span> <span>(+86)18618180071</span></li></ul></div><div class="col-md-4 col-sm-12"><p>Stay up to date with email notification</p><form><div class=form-group><input type=email class=form-control id=exampleInputEmail1 aria-describedby=emailHelp placeholder="Enter email">
+<small id=emailHelp class="form-text text-muted">We'll never share your email with anyone else.</small></div><button type=submit class="btn btn-info">Submit</button></form></div></div></div><hr><div class=container><div class="row text-left"><div class=col-md-4><a id=theme href=https://github.com/hossainemruz/toha target=#><img src=/images/theme-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_32x0_resize_box_2.png>
+Toha</a></div><div class="col-md-4 text-center">© 2020 Copyright.</div><div class="col-md-4 text-right"><a id=hugo href=https://gohugo.io/>Powered by
+<img src=/images/hugo-logo.svg alt="Hugo Logo" height=18></a></div></div></div></footer><script src=/js/jquery-3.4.1.min.js></script><script src=/js/popper.min.js></script><script src=/js/bootstrap.min.js></script><script src=/js/navbar.js></script><script src=/js/main.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js></script><script src=/js/single.js></script><script>hljs.initHighlightingOnLoad()</script><script type=text/javascript async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">MathJax.Hub.Config({tex2jax:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$']],processEscapes:!0,processEnvironments:!0,skipTags:['script','noscript','style','textarea','pre'],TeX:{equationNumbers:{autoNumber:"AMS"},extensions:["AMSmath.js","AMSsymbols.js"]}}}),MathJax.Hub.Queue(function(){var b=MathJax.Hub.getAllJax(),a;for(a=0;a<b.length;a+=1)b[a].SourceElement().parentNode.className+=' has-jax'}),MathJax.Hub.Config({TeX:{equationNumbers:{autoNumber:"AMS"}}})</script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css integrity=sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js integrity=sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz crossorigin=anonymous></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js integrity=sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI crossorigin=anonymous onload=renderMathInElement(document.body)></script></body></html>

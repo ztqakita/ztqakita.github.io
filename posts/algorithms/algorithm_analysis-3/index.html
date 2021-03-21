@@ -1,0 +1,113 @@
+<!doctype html><html><head><title>Greedy & Back-track & Branch and Bound</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><link rel=stylesheet href=/css/bootstrap.min.css><link rel=stylesheet href=/css/layouts/main.css><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/navigators/navbar.css><link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;500;600" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css><link rel=icon type=image/png href=/images/favicon_hu8376fd15465fef26ffe66b6bcf0ca686_13669_42x0_resize_box_2.png><link rel=stylesheet href=/css/style.css><meta name=description content="Greedy & Back-track & Branch and Bound"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css><link rel=stylesheet href=/css/layouts/single.css><link rel=stylesheet href=/css/navigators/sidebar.css></head><body data-spy=scroll data-target=#TableOfContents data-offset=80><div class="container-fluid bg-dimmed wrapper"><nav class="navbar navbar-expand-xl top-navbar final-navbar shadow"><div class=container><button class="navbar-toggler navbar-light" id=sidebar-toggler type=button onclick=toggleSidebar()>
+<span class=navbar-toggler-icon></span></button>
+<a class=navbar-brand href=/><img src=/images/main-logo_hu864bbe108f1be1ae04b57f7f2fd9d631_5637_42x0_resize_box_2.png>ztqakita's Blog</a>
+<button class="navbar-toggler navbar-light" id=toc-toggler type=button onclick=toggleTOC()>
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse lang-selector" id=top-nav-items><ul class="navbar-nav ml-auto"></ul></div></div><img src=/images/main-logo_hu864bbe108f1be1ae04b57f7f2fd9d631_5637_42x0_resize_box_2.png class=d-none id=main-logo>
+<img src=/images/inverted-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_42x0_resize_box_2.png class=d-none id=inverted-logo></nav><section class=sidebar-section id=sidebar-section><div class=sidebar-holder><div class=sidebar id=sidebar><form class=mx-auto method=get action=https://ztqakita.github.io/search><input type=text name=keyword placeholder=Search data-search id=search-box></form><div class=sidebar-tree><ul class=tree id=tree><li id=list-heading><a href=/posts data-filter=all>Posts</a></li><div class=subtree><li><a href=/posts/introduction/>Introduction</a></li><li><i class="fas fa-minus-circle"></i><a class=active href=/posts/algorithms/>Algorithms</a><ul class=active><li><a href=/posts/algorithms/algorithm_analysis-1/>Complexity & Divide and Conquer</a></li><li><a href=/posts/algorithms/algorithm_analysis-2/>Dynamic Programming</a></li><li><a class=active href=/posts/algorithms/algorithm_analysis-3/>Greedy & Back-track & Branch and Bound</a></li></ul></li><li><i class="fas fa-plus-circle"></i><a href=/posts/compiler/>Compiler</a><ul><li><a href=/posts/compiler/compilers_1/>Lexcial Analysis & Parsing</a></li><li><a href=/posts/compiler/compilers_3/>Semantic Analysis & Runtime Environment</a></li><li><a href=/posts/compiler/compilers_2/>Syntax-directed Translation</a></li></ul></li><li><i class="fas fa-plus-circle"></i><a href=/posts/database-system/>Database System</a><ul><li><a href=/posts/database-system/database_system_1/>Database System Lecture Note 1</a></li><li><a href=/posts/database-system/database_system_2/>Database System Lecture Note 2</a></li><li><a href=/posts/database-system/database_system_3/>Database System Lecture Note 3</a></li><li><a href=/posts/database-system/database_system_4/>Database System Lecture Note 4</a></li></ul></li><li><i class="fas fa-plus-circle"></i><a href=/posts/deep-learning/>DL</a><ul><li><a href=/posts/deep-learning/cnn/>Convolutional Neural Network</a></li><li><a href=/posts/deep-learning/introduction-to-deep-learning/>Introduction to Deep Learning</a></li><li><a href=/posts/deep-learning/optimizer-for-dl/>Optimization for Deep Learning</a></li><li><a href=/posts/deep-learning/rnn/>Recursive Neural Network</a></li></ul></li><li><i class="fas fa-plus-circle"></i><a href=/posts/machine-learning/>ML</a><ul><li><a href=/posts/machine-learning/basic-concepts/>Basic Concepts</a></li><li><a href=/posts/machine-learning/classification/>Classification</a></li><li><a href=/posts/machine-learning/perceptron/>Perceptron</a></li></ul></li><li><i class="fas fa-plus-circle"></i><a href=/posts/operating-system/>Operating System</a><ul><li><a href=/posts/operating-system/operating_system_concepts_3/>CPU Scheduling</a></li><li><a href=/posts/operating-system/operating_system_concepts_6/>File System</a></li><li><a href=/posts/operating-system/operating_system_concepts_1/>Introduction & OS Structure</a></li><li><a href=/posts/operating-system/operating_system_concepts_7/>Mass-Storage Structure & I/O System</a></li><li><a href=/posts/operating-system/operating_system_concepts_5/>Memory Management</a></li><li><a href=/posts/operating-system/operating_system_concepts_2/>Process & Threads</a></li><li><a href=/posts/operating-system/operating_system_concepts_4/>Process Synchronization</a></li></ul></li></div></ul></div></div></div></section><section class=content-section id=content-section><div class=content><div class="container p-0 read-area"><div class="hero-area col-sm-12" id=hero-area style=background-image:url(https://ztqakita.github.io/images/default-hero.jpg)></div><div class=page-content><div class="author-profile ml-auto align-self-lg-center"><img class=rounded-circle src=/images/author/ztq.png><h5 class=author-name>Brandon Zhang</h5><p>November 16, 2020</p></div><div class=title><h1>Greedy & Back-track & Branch and Bound</h1></div><div class=post-content id=post-content><h1 id=贪心算法>贪心算法</h1><p>算法+<strong>证明</strong></p><h2 id=一最优装载问题>一、最优装载问题</h2><ol><li>算法：</li></ol><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C++ data-lang=C++><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>Loading</span>(<span style=color:#66d9ef>int</span> x[], <span style=color:#66d9ef>int</span> w[], <span style=color:#66d9ef>int</span> c, <span style=color:#66d9ef>int</span> n)
+{
+    <span style=color:#66d9ef>int</span> <span style=color:#f92672>*</span>t <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span> [n<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>];
+    Sort(w, t, n);
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>)
+        x[i] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n <span style=color:#f92672>&amp;&amp;</span> w[t[i]] <span style=color:#f92672>&lt;</span> c; i<span style=color:#f92672>++</span>)
+    {
+        x[t[i]] <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+        c <span style=color:#f92672>-=</span> w[t[i]];
+    }
+}
+</code></pre></div><ol start=2><li>证明：<ul><li>最优子结构性质：</li></ul></li></ol><h2 id=二哈夫曼编码>二、哈夫曼编码</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C++ data-lang=C++>
+</code></pre></div><h2 id=三最小生成树>三、最小生成树</h2><h1 id=回溯法>回溯法</h1><p>子集树：0-1背包问题，从包含n个全集当中去选择一个子集，所有可能解是$O(2^n)$
+排序树：TSP问题，解是一个排列，所有可能解的规模是$O(n!)$</p><ul><li>子集树：当所给的问题是从n个元素的集合S中找出满足某种性质的子集时，相应的解空间称为子集树。</li><li>遍历子集树
+时间复杂度：$O(2^n)$</li></ul><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C++ data-lang=C++><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>backtrack</span> (<span style=color:#66d9ef>int</span> t)
+{
+    <span style=color:#66d9ef>if</span> (t<span style=color:#f92672>&gt;</span>n) 
+        output(x);
+    <span style=color:#66d9ef>else</span>
+    {
+      <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>;i<span style=color:#f92672>&lt;=</span><span style=color:#ae81ff>1</span>;i<span style=color:#f92672>++</span>) 
+      {
+        x[t]<span style=color:#f92672>=</span>i;
+        <span style=color:#66d9ef>if</span> (legal(t)) 
+            backtrack(t<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>);
+      }
+    }
+}
+</code></pre></div><ul><li>排列树：当所给的问题是确定n个元素满足某种性质的排列时，相应的解空间树成为排列树。</li><li>遍历排序树
+时间复杂度：$O(n!)$</li></ul><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C++ data-lang=C++><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>backtrack</span> (<span style=color:#66d9ef>int</span> t)
+{
+    <span style=color:#66d9ef>if</span> (t<span style=color:#f92672>&gt;</span>n) output(x);
+    <span style=color:#66d9ef>else</span> {
+      <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i<span style=color:#f92672>=</span>t;i<span style=color:#f92672>&lt;=</span>n;i<span style=color:#f92672>++</span>) {
+        swap(x[t], x[i]);
+        <span style=color:#66d9ef>if</span> (legal(t)) backtrack(t<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>);
+        swap(x[t], x[i]);
+      }
+    }
+} 
+</code></pre></div><p>剪枝设计：</p><ol><li>问题的约束条件不满足时</li><li>当大于当前的最优解时</li><li>在构造排序树时，为了达到很好的剪枝效果，深度遍历的第一个叶子节点是由贪心方法得出的。
+贪心方法+分支限界：效果很好</li></ol><h2 id=1-装载问题>1. 装载问题</h2><h2 id=2-批处理作业调度问题>2. 批处理作业调度问题</h2><p>回溯法考试题目步骤：
+设计出解向量
+画出解空间树
+给出剪枝的方案
+写出伪代码
+画出剪枝</p><h2 id=3-n皇后问题>3. n皇后问题</h2><p>此时的解空间树不再是传统的子集树、排序树，而是自己独有的树。</p><h2 id=4-图的着色问题>4. 图的着色问题</h2><ol><li><p>解空间：
+n维向量，每一维代表一个顶点，值代表其的颜色值。</p></li><li><p>解空间树
+根节点从顶点1开始，</p></li><li><p>迭代方式：</p></li></ol><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C++ data-lang=C++>GraphColor(<span style=color:#66d9ef>int</span> n,<span style=color:#66d9ef>int</span> m,<span style=color:#66d9ef>int</span> color[],<span style=color:#66d9ef>bool</span> c[][<span style=color:#ae81ff>5</span>])
+{
+     <span style=color:#66d9ef>int</span> i,k;  
+    <span style=color:#66d9ef>for</span> (i<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>; i<span style=color:#f92672>&lt;</span>n; i<span style=color:#f92672>++</span> )           <span style=color:#75715e>//将解向量color[n]初始化为0
+</span><span style=color:#75715e></span>        color[i]<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>;
+    k<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>;
+    <span style=color:#66d9ef>while</span> (k<span style=color:#f92672>&gt;=</span><span style=color:#ae81ff>0</span>)
+    {   
+        color[k]<span style=color:#f92672>=</span>color[k]<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>;       <span style=color:#75715e>//使当前颜色数加1
+</span><span style=color:#75715e></span>        <span style=color:#66d9ef>while</span> ((color[k]<span style=color:#f92672>&lt;=</span>m) <span style=color:#f92672>&amp;&amp;</span> (<span style=color:#f92672>!</span>ok(color,k,c,n))) <span style=color:#75715e>//当前颜色是否有效
+</span><span style=color:#75715e></span>        color[k]<span style=color:#f92672>=</span>color[k]<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>;   <span style=color:#75715e>//无效，搜索下一个颜色
+</span><span style=color:#75715e></span>        <span style=color:#66d9ef>if</span> (color[k]<span style=color:#f92672>&lt;=</span>m)       <span style=color:#75715e>//求解完毕，输出解
+</span><span style=color:#75715e></span>        {
+            <span style=color:#66d9ef>if</span> (k<span style=color:#f92672>==</span>n<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
+              <span style=color:#66d9ef>break</span>;  <span style=color:#75715e>//是最后的顶点，完成搜索
+</span><span style=color:#75715e></span>            <span style=color:#66d9ef>else</span> 
+              k<span style=color:#f92672>=</span>k<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>;        <span style=color:#75715e>//否，处理下一个顶点
+</span><span style=color:#75715e></span>        }
+        <span style=color:#66d9ef>else</span>                   <span style=color:#75715e>//搜索失败，回溯到前一个顶点
+</span><span style=color:#75715e></span>        {
+    color[k]<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>;
+	    k<span style=color:#f92672>=</span>k<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>;
+          }
+     }
+}
+</code></pre></div><ol start=4><li>递归方式：</li></ol><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C++ data-lang=C++><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>GraphColor</span>(<span style=color:#66d9ef>int</span> k)
+{
+    <span style=color:#66d9ef>if</span>(k <span style=color:#f92672>&gt;</span> n)
+    {
+      sum<span style=color:#f92672>++</span>;
+      <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>; i <span style=color:#f92672>&lt;=</span> n; i<span style=color:#f92672>++</span>)
+        cout <span style=color:#f92672>&lt;&lt;</span> x[i] <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34; &#34;</span>;
+      cout <span style=color:#f92672>&lt;&lt;</span> endl;
+    }
+    <span style=color:#66d9ef>else</span>
+    {
+      <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>; i <span style=color:#f92672>&lt;=</span> m; i<span style=color:#f92672>++</span>)
+      {
+        x[k] <span style=color:#f92672>=</span> i;
+        <span style=color:#66d9ef>if</span>(ok(k))
+          GraphColor(k<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>);
+      }
+    }
+}
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>ok</span>(<span style=color:#66d9ef>int</span> k)
+{
+  <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>; i <span style=color:#f92672>&lt;=</span> n; i<span style=color:#f92672>++</span>)
+  {
+    <span style=color:#66d9ef>if</span>((c[i][k]<span style=color:#f92672>==</span><span style=color:#ae81ff>1</span>) <span style=color:#f92672>&amp;&amp;</span> (x[i]<span style=color:#f92672>==</span>x[k]))
+      <span style=color:#66d9ef>return</span> false;
+    <span style=color:#66d9ef>return</span> true;
+  }
+}
+</code></pre></div><h1 id=分支限界法>分支限界法</h1><p><img src=/images/posts/algo/17.JPG alt>
+常用的分支限界法</p><ol><li>队列式(FIFO)分支限界法</li><li>优先队列式分支限界法</li></ol><h2 id=1-01背包问题>1. 0/1背包问题</h2><p>上界的作用：叶子结点得到的当前最优值可以剪去很多在优先队列中尚未拓展的结点，与这些结点的理想值ub进行比较再删减。</p><ul><li>先进先出队列：每次队列中总是取出头元素，不考虑元素间的大小关系；</li><li>优先队列：每次取出的头元素均是经过比较后得到的队列中值最优的元素。更为常用</li></ul><h2 id=2-tsp问题>2. TSP问题</h2><ol><li>用贪心法得到的近似解作为问题的<strong>上限</strong>，从而进行剪枝；</li><li>考虑TSP一个完整的解，每一个城市都会进去一次，出来一次，所以从邻接矩阵中每一行取出两个最小的元素(代表从这个城市进出的最小代价)，此处牢记若已经有确定的边加入，就要加上该边和其他权值最小的边。这样<strong>加起来以后除以2</strong>，就得到下界。</li></ol><p>以大题为主，分支限界法不考，</p></div><div class=btn-improve-page><a href=https://github.com/ztqakita/ztqakita.github.io/edit//content/posts/algorithms/Algorithm_analysis-3.md><i class="fas fa-code-branch"></i>Improve this page</a></div><hr><div class="row next-prev-navigator"><div class="col-md-6 previous-article"><a href=/posts/database-system/database_system_3/ class="btn btn-outline-info"><span><i class="fas fa-chevron-circle-left"></i>Prev</span><br><span>Database System Lecture Note 3</span></a></div><div class="col-md-6 next-article"><a href=/posts/operating-system/operating_system_concepts_5/ class="btn btn-outline-info"><span>Next <i class="fas fa-chevron-circle-right"></i></span><br><span>Memory Management</span></a></div></div><hr></div></div></div><a id=scroll-to-top class=btn><i class="fas fa-chevron-circle-up"></i></a></section><section class=toc-section id=toc-section><div class=toc-holder><h5 class="text-center pl-3">Table of Contents</h5><hr><div class=toc><nav id=TableOfContents><ul><li><a href=#一最优装载问题>一、最优装载问题</a></li><li><a href=#二哈夫曼编码>二、哈夫曼编码</a></li><li><a href=#三最小生成树>三、最小生成树</a></li></ul><ul><li><a href=#1-装载问题>1. 装载问题</a></li><li><a href=#2-批处理作业调度问题>2. 批处理作业调度问题</a></li><li><a href=#3-n皇后问题>3. n皇后问题</a></li><li><a href=#4-图的着色问题>4. 图的着色问题</a></li></ul><ul><li><a href=#1-01背包问题>1. 0/1背包问题</a></li><li><a href=#2-tsp问题>2. TSP问题</a></li></ul></nav></div></div></section></div><footer class="container-fluid text-center align-content-center footer pb-2"><div class="container pt-5"><div class="row text-left"><div class="col-md-4 col-sm-12"><h5>Navigation</h5><ul><li class=nav-item><a class=smooth-scroll href=#about>About</a></li><li class=nav-item><a class=smooth-scroll href=#skills>Skills</a></li><li class=nav-item><a class=smooth-scroll href=#experiences>Experiences</a></li><li class=nav-item><a class=smooth-scroll href=#projects>Projects</a></li><li class=nav-item><a class=smooth-scroll href=#recent-posts>Recent Posts</a></li><li class=nav-item><a class=smooth-scroll href=#achievements>Achievements</a></li></ul></div><div class="col-md-4 col-sm-12"><h5>Contact me:</h5><ul><li><span>Email:</span> <span>ztqakita@163.com</span></li><li><span>Phone:</span> <span>(+86)18618180071</span></li></ul></div><div class="col-md-4 col-sm-12"><p>Stay up to date with email notification</p><form><div class=form-group><input type=email class=form-control id=exampleInputEmail1 aria-describedby=emailHelp placeholder="Enter email">
+<small id=emailHelp class="form-text text-muted">We'll never share your email with anyone else.</small></div><button type=submit class="btn btn-info">Submit</button></form></div></div></div><hr><div class=container><div class="row text-left"><div class=col-md-4><a id=theme href=https://github.com/hossainemruz/toha target=#><img src=/images/theme-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_32x0_resize_box_2.png>
+Toha</a></div><div class="col-md-4 text-center">© 2020 Copyright.</div><div class="col-md-4 text-right"><a id=hugo href=https://gohugo.io/>Powered by
+<img src=/images/hugo-logo.svg alt="Hugo Logo" height=18></a></div></div></div></footer><script src=/js/jquery-3.4.1.min.js></script><script src=/js/popper.min.js></script><script src=/js/bootstrap.min.js></script><script src=/js/navbar.js></script><script src=/js/main.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js></script><script src=/js/single.js></script><script>hljs.initHighlightingOnLoad()</script><script type=text/javascript async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">MathJax.Hub.Config({tex2jax:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$']],processEscapes:!0,processEnvironments:!0,skipTags:['script','noscript','style','textarea','pre'],TeX:{equationNumbers:{autoNumber:"AMS"},extensions:["AMSmath.js","AMSsymbols.js"]}}}),MathJax.Hub.Queue(function(){var b=MathJax.Hub.getAllJax(),a;for(a=0;a<b.length;a+=1)b[a].SourceElement().parentNode.className+=' has-jax'}),MathJax.Hub.Config({TeX:{equationNumbers:{autoNumber:"AMS"}}})</script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css integrity=sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js integrity=sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz crossorigin=anonymous></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js integrity=sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI crossorigin=anonymous onload=renderMathInElement(document.body)></script></body></html>
