@@ -1,6 +1,6 @@
 ---
 title: "Decision Tree"
-date: 2021-01-27T06:00:20+06:00
+date: 2021-03-22T06:00:20+06:00
 hero: /images/posts/DL/139-deep-learning.svg
 menu:
   sidebar:
