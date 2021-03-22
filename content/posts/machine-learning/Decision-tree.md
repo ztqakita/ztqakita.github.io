@@ -66,4 +66,13 @@ $$C_{\alpha}(T)=\sum_{i=1}^{|T|}N_tH_t(T) + \alpha|T|=C(T)+\alpha|T|$$
 ![](/images/posts/ML/CART_R.JPG)
 
 2. 分类树的生成
-3. ![](/images/posts/ML/CART_C.JPG)
+   - 基尼系数：假设有$K$个类，样本点属于第$k$类的概率为$p_k$，则
+    $$Gini(p)=\sum_{k=1}^Kp_k(1-p_k)$$
+    若样本集合$D$根据特征$A$是否取值$\alpha$被分割为$D_1$和$D_2$两部分，则在特征$A$下，集合$D$的基尼指数为：
+    $$Gini(D, A)=\frac{|D_1|}{D}Gini(D_1)+\frac{|D_2|}{D}Gini(D_2)$$
+![](/images/posts/ML/CART_C.JPG)
+
+3. 剪枝
+    后剪枝法，从生成的决策树$T_0$开始不断剪枝，一直到根节点，形成一个子树序列$\{T_0, T_1, \dots, T_n\}$，然后通过交叉验证法在独立的验证数据集上对子树序列进行测试。
+
+
