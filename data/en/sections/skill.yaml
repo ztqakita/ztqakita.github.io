@@ -13,13 +13,25 @@ section:
 skills:
 - name: Linux
   logo: /images/sections/skills/linux.png
-  summary: "Using as the main operating system. Capable of writing bash/shell scripts."
+  summary: "Capable of writing bash/shell scripts."
 
 - name: Git
   logo: /images/sections/skills/git.png
-  summary: "Experienced with git-based development. Mostly, use Github. Also, have experience in working with GitLab."
+  summary: "Experienced with git-based development. Mostly, use Github."
   url: "https://git-scm.com/"
 
 - name: C++
   logo: /images/sections/skills/c++.png
   summary: "Know basic C/C++ programming. Used for contest programming and problem solving."
+
+- name: Python
+  logo: /images/sections/skills/python.png
+  summary: "Used for data analysis and neural network training."
+
+- name: LaTex
+  logo: /images/sections/skills/latex.jpg
+  summary: "Capable of writing reports and papers by using LaTex."
+
+- name: MATLAB
+  logo: /images/sections/skills/matlab.jpg
+  summary: "Used for data processing."

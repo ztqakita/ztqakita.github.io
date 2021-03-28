@@ -21,28 +21,28 @@ buttons:
 
 # your projects
 projects:
-- name: Kubernetes
+- name: Intel 8086
   logo: /images/sections/projects/kubernetes.png
   role: Contributor
-  timeline: "March 2018 - Present"
-  repo: https://github.com/kubernetes/kubernetes # If your project is a public repo on GitHub, then provide this link. it will show star count.
+  timeline: "Apirl 2020 - May 2020"
+  repo: https://github.com/ZubinGou/8086-emulator # If your project is a public repo on GitHub, then provide this link. it will show star count.
   #url: ""  # If your project is not a public repo but it has a website or any external details url then provide it here. don't provide "repo" and "url" simultaneously.
-  summary: Production-Grade Container Scheduling and Management.
-  tags: ["professional", "kubernetes", "cloud"]
+  summary: An Intel 8086 CPU emulator in Python with GUI.
+  tags: ["professional", "academic", "hardware"]
 
-- name: Tensorflow
+- name: RISC-V on T-core Report
   logo: /images/sections/projects/tensorflow.png
-  role: Developer
-  timeline: "Jun 2018 - Present"
-  repo: https://github.com/tensorflow/tensorflow
+  role: Owner
+  timeline: "Aug 2020 - Sep 2020"
+  repo: https://github.com/ztqakita/Risc-V-on-T-Core-Report
   #url: ""
-  summary: An Open Source Machine Learning Framework for Everyone.
-  tags: ["professional", "machine-learning","academic"]
+  summary: RISC-V on T-core final report written by LaTex 
+  tags: ["professional", "hardware","academic"]
 
-- name: Toha
+- name: ztqakita blog
   logo: /images/sections/projects/toha.png
   role: Owner
-  timeline: "Jun 2019 - Present"
-  repo: https://github.com/hossainemruz/toha
-  summary: A Hugo theme for personal portfolio.
+  timeline: "Sep 2020 - Present"
+  repo: https://github.com/ztqakita/ztqakita.github.io
+  summary: A Hugo theme for personal blog.
   tags: ["hobby","hugo","theme","professional"]
