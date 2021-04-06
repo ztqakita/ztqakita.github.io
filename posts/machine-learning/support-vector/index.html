@@ -12,7 +12,7 @@ $$\hat{\gamma}=\min_{i=1,\dots,N}\hat{\gamma_i}$$</li><li><strong>几何间隔</
 $$\hat{\gamma_i}=y_i(\frac{\omega}{||\omega||} \cdot x_i+\frac{b}{||\omega||})$$<br>其中$||\omega||$是L2范数。</li></ul></li><li><p>间隔最大化</p><ul><li>输入：线性可分数据集$T$</li><li>输出：最大间隔分离超平面和分类决策函数</li><li>构造并求解约束最优化问题：
 $$\min_{\omega,b} \quad \frac{1}{2}||\omega||^2 $$
 $$
-s.t. \qquad y_i(\omega \cdot x_i+b)-1 \geq 0, \quad i=1, 2, \dots, N$$</li><li>求解得到最优解$\omega^<em>, b^</em>$。</li></ul></li><li><p>支持向量</p><ul><li>训练集的样本点中与分离超平面距离<strong>最近的样本点</strong>的实例：
+s.t. \qquad y_i(\omega \cdot x_i+b)-1 \geq 0, \quad i=1, 2, \dots, N$$</li><li>求解得到最优解$\omega^* , b^*$。</li></ul></li><li><p>支持向量</p><ul><li>训练集的样本点中与分离超平面距离<strong>最近的样本点</strong>的实例：
 $$H_1:\omega \cdot x_i+b=1 $$
 $$H_2:\omega \cdot x_i+b=-1$$</li></ul><p>支持向量机由这些很少的“重要”训练样本决定。</p></li><li><p>求解方法：应用拉格朗日对偶法，通过求解对偶问题得到原始问题的最优解。</p><ul><li>输入：线性可分训练集$T$；</li><li>输出：分离超平面和分类决策函数</li></ul><ol><li>构造并求解约束最优化问题：
 $$\min_{\alpha} \frac{1}{2} \sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_i \alpha_j y_i y_j (x_i \cdot x_j)-\sum_{i=1}^{N}\alpha_i $$

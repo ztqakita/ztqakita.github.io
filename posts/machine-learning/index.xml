@@ -4,7 +4,7 @@
 函数间隔：对于给定的训练数据集$T$和超平面$(\omega, b)$，则 $$\hat{\gamma_i}=y_i(\omega \cdot x_i+b)$$
 超平面关于数据集$T$的函数间隔为 $$\hat{\gamma}=\min_{i=1,\dots,N}\hat{\gamma_i}$$ 几何间隔：对于给定的训练数据集$T$和超平面$(\omega, b)$，则 $$\hat{\gamma_i}=y_i(\frac{\omega}{||\omega||} \cdot x_i+\frac{b}{||\omega||})$$
 其中$||\omega||$是L2范数。 间隔最大化
-输入：线性可分数据集$T$ 输出：最大间隔分离超平面和分类决策函数 构造并求解约束最优化问题： $$\min_{\omega,b} \quad \frac{1}{2}||\omega||^2 $$ $$ s.t. \qquad y_i(\omega \cdot x_i+b)-1 \geq 0, \quad i=1, 2, \dots, N$$ 求解得到最优解$\omega^, b^$。 支持向量</description></item><item><title>Decision Tree</title><link>https://ztqakita.github.io/posts/machine-learning/decision-tree/</link><pubDate>Mon, 22 Mar 2021 06:00:20 +0600</pubDate><guid>https://ztqakita.github.io/posts/machine-learning/decision-tree/</guid><description>原理 决策树模型与学习 决策树的内部节点表示一个特征或属性，叶节点表示一个类。
+输入：线性可分数据集$T$ 输出：最大间隔分离超平面和分类决策函数 构造并求解约束最优化问题： $$\min_{\omega,b} \quad \frac{1}{2}||\omega||^2 $$ $$ s.t. \qquad y_i(\omega \cdot x_i+b)-1 \geq 0, \quad i=1, 2, \dots, N$$ 求解得到最优解$\omega^* , b^*$。 支持向量</description></item><item><title>Decision Tree</title><link>https://ztqakita.github.io/posts/machine-learning/decision-tree/</link><pubDate>Mon, 22 Mar 2021 06:00:20 +0600</pubDate><guid>https://ztqakita.github.io/posts/machine-learning/decision-tree/</guid><description>原理 决策树模型与学习 决策树的内部节点表示一个特征或属性，叶节点表示一个类。
 if-then规则：互斥且完备 本质： 从训练数据集中归纳出一组分类规则（估计出条件概率模型） 损失函数：正则化的极大似然函数 学习算法：启发式方法，得到(sub-optimal)的决策树 一、特征选择 准则：信息增益
 熵： 设$X$是一个取有限个值的离散随机变量，定义为： $$H(X) = -\sum_{i=1}^n p_i\log p_i$$
 条件熵： 随机变量$X$给定的条件下随机变量$Y$的条件熵$H(Y|X)$，定义为： $$H(Y|X) = \sum_{i=1}^np_iH(Y|X=x_i)$$ 当熵和条件熵中的概率由极大似然估计得到时，分别成为经验熵和经验条件熵
