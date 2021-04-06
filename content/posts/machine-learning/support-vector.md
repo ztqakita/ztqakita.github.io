@@ -1,5 +1,5 @@
 ---
-title: "Decision Tree"
+title: "Support Vector Machines"
 date: 2021-03-29T06:00:20+06:00
 hero: /images/posts/DL/139-deep-learning.svg
 menu:
