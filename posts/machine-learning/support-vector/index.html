@@ -9,92 +9,73 @@ $$\omega^* x + b^* = 0$$
 $$f(x) = sign(\omega^* x + b^*)$$</p></li><li><p>函数间隔和几何间隔</p><ul><li><strong>函数间隔</strong>：对于给定的训练数据集$T$和超平面$(\omega, b)$，则
 $$\hat{\gamma_i}=y_i(\omega \cdot x_i+b)$$<br>超平面关于数据集$T$的函数间隔为
 $$\hat{\gamma}=\min_{i=1,\dots,N}\hat{\gamma_i}$$</li><li><strong>几何间隔</strong>：对于给定的训练数据集$T$和超平面$(\omega, b)$，则
-$$\hat{\gamma_i}=y_i(\frac{\omega}{||\omega||} \cdot x_i+\frac{b}{||\omega||})$$<br>其中$||\omega||$是L2范数。</li></ul></li><li><p>间隔最大化<br>输入：线性可分数据集$T$
-输出：最大间隔分离超平面和分类决策函数
-构造并求解约束最优化问题：
-$$\min_{\omega,b} \quad \frac{1}{2}||\omega||^2 \<br>s.t. \qquad y_i(\omega \cdot x_i+b)-1 \geq 0, \quad i=1, 2, \dots, N$$
-求解得到最优解$\omega^*, b^*$。</p></li><li><p>支持向量
-训练集的样本点中与分离超平面距离<strong>最近的样本点</strong>的实例：
-$$H_1:\omega \cdot x_i+b=1 \
-H_2:\omega \cdot x_i+b=-1$$
-支持向量机由这些很少的“重要”训练样本决定。</p></li><li><p>求解方法：应用拉格朗日对偶法，通过求解对偶问题得到原始问题的最优解。
-输入：线性可分训练集$T$；
-输出：分离超平面和分类决策函数
-(1)构造并求解约束最优化问题：
-$$\min_{\alpha} \frac{1}{2} \sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_i \alpha_j y_i y_j (x_i \cdot x_j)-\sum_{i=1}^{N}\alpha_i \<br>s.t. \qquad \sum_{i=1}^{N} \alpha_iy_i=0 \<br>\alpha_i \geq 0, i = 1,2,\dots,N
+$$\hat{\gamma_i}=y_i(\frac{\omega}{||\omega||} \cdot x_i+\frac{b}{||\omega||})$$<br>其中$||\omega||$是L2范数。</li></ul></li><li><p>间隔最大化</p><ul><li>输入：线性可分数据集$T$</li><li>输出：最大间隔分离超平面和分类决策函数</li><li>构造并求解约束最优化问题：
+$$\min_{\omega,b} \quad \frac{1}{2}||\omega||^2 $$
 $$
-并求出最优解$\alpha^*$。
-(2)计算
+s.t. \qquad y_i(\omega \cdot x_i+b)-1 \geq 0, \quad i=1, 2, \dots, N$$</li><li>求解得到最优解$\omega^<em>, b^</em>$。</li></ul></li><li><p>支持向量</p><ul><li>训练集的样本点中与分离超平面距离<strong>最近的样本点</strong>的实例：
+$$H_1:\omega \cdot x_i+b=1 $$
+$$H_2:\omega \cdot x_i+b=-1$$</li></ul><p>支持向量机由这些很少的“重要”训练样本决定。</p></li><li><p>求解方法：应用拉格朗日对偶法，通过求解对偶问题得到原始问题的最优解。</p><ul><li>输入：线性可分训练集$T$；</li><li>输出：分离超平面和分类决策函数</li></ul><ol><li>构造并求解约束最优化问题：
+$$\min_{\alpha} \frac{1}{2} \sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_i \alpha_j y_i y_j (x_i \cdot x_j)-\sum_{i=1}^{N}\alpha_i $$
+$$
+s.t. \qquad \sum_{i=1}^{N} \alpha_iy_i=0 $$
+$$
+\alpha_i \geq 0, i = 1,2,\dots,N
+$$
+并求出最优解$\alpha^*$。</li><li>计算
 $$\omega^* = \sum_{i=1}^N\alpha_i^*y_ix_i$$
 并选择$\alpha^*$的其中一个正分量$\alpha^*\gt 0$，计算
-$$b^*=y_i- \sum_{i=1}^N\alpha_i^*y_i(x_i\cdot x_j)$$
-(3)求得分离超平面
-$$\omega^*\cdot x+b^*=0$$
-分类决策函数：
-$$f(x)=sign(\omega^*\cdot x+b^*)$$</p></li></ol><h3 id=二线性支持向量机与软间隔最大化>二、线性支持向量机与软间隔最大化</h3><ol><li><p>线性支持向量机：给定线性不可分的训练集，通过软间隔最大化或等价地求解相应的凸二次规划问题得到的分离超平面为：
+$$b^*=y_i- \sum_{i=1}^N\alpha_i^*y_i(x_i\cdot x_j)$$</li><li>求得分离超平面
+$$\omega^* \cdot x+ b^* =0$$</li><li>分类决策函数：
+$$f(x)=sign(\omega^* \cdot x+b^* )$$</li></ol></li></ol><h3 id=二线性支持向量机与软间隔最大化>二、线性支持向量机与软间隔最大化</h3><ol><li><p>线性支持向量机：给定线性不可分的训练集，通过软间隔最大化或等价地求解相应的凸二次规划问题得到的分离超平面为：
 $$\omega^* x + b^* = 0$$
 以及相应的分类决策函数：
 $$f(x) = sign(\omega^* x + b^*)$$</p></li><li><p>软间隔最大化
 输入：线性可分数据集$T$
 输出：最大间隔分离超平面和分类决策函数
 构造并求解约束最优化问题：
-$$\min_{\omega,b} \quad \frac{1}{2}||\omega||^2 + C\sum_{i=1}^N\xi_i\<br>s.t. \qquad y_i(\omega \cdot x_i+b)\geq 1-\xi_i, \quad i=1, 2, \dots, N\<br>\xi_i \ge 0,\quad i=1, 2, \dots, N $$
-求解得到最优解$\omega^*, b^*$。</p></li><li><p>求解方法
-输入：线性可分训练集$T$；
-输出：分离超平面和分类决策函数
-(1)构造并求解约束最优化问题：
-$$\min_{\alpha} \frac{1}{2} \sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_i \alpha_j y_i y_j (x_i \cdot x_j)-\sum_{i=1}^{N}\alpha_i \<br>s.t. \qquad \sum_{i=1}^{N} \alpha_iy_i=0 \<br>0 \leq \alpha_i \leq C, i = 1,2,\dots,N
+$$\min_{\omega,b} \quad \frac{1}{2}||\omega||^2 + C\sum_{i=1}^N\xi_i$$
 $$
-并求出最优解$\alpha^*$。
-(2)计算
+s.t. \qquad y_i(\omega \cdot x_i+b)\geq 1-\xi_i, \quad i=1, 2, \dots, N$$
+$$
+\xi_i \ge 0,\quad i=1, 2, \dots, N $$
+求解得到最优解$\omega^*, b^*$。</p></li><li><p>求解方法</p><ul><li>输入：线性可分训练集$T$；</li><li>输出：分离超平面和分类决策函数</li></ul><ol><li>构造并求解约束最优化问题：
+$$\min_{\alpha} \frac{1}{2} \sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_i \alpha_j y_i y_j (x_i \cdot x_j)-\sum_{i=1}^{N}\alpha_i $$
+$$
+s.t. \qquad \sum_{i=1}^{N} \alpha_iy_i=0 $$
+$$
+0 \leq \alpha_i \leq C, i = 1,2,\dots,N
+$$
+并求出最优解$\alpha^*$。</li><li>计算
 $$\omega^* = \sum_{i=1}^N\alpha_i^*y_ix_i$$
 并选择$\alpha^*$的一个适合条件$0\lt\alpha^*\lt C$，计算
-$$b^*=y_i- \sum_{i=1}^N\alpha_i^*y_i(x_i\cdot x_j)$$
-(3)求得分离超平面
-$$\omega^*\cdot x+b^*=0$$
-分类决策函数：
-$$f(x)=sign(\omega^*\cdot x+b^*)$$</p><p>上述过程需要满足KKT(Karush-Kuhn-Tucker)条件，即：
-$$
-\begin{cases}
-\alpha_i \ge 0; \<br>y_if(x_i)-1 \ge 0; \<br>\alpha_i(y_if(x_i)-1)=0. \<br>\end{cases}
-$$</p><p>对于任意样本$(x_i, y_i)$，总有$\alpha_i=0$ 或 $y_if(x_i)-1=0$。当$\alpha_i \gt 0$时，则必有$y_if(x_i)=1$，则所有的样本点位于最大间隔边界，是一个支持向量。所以最终模型只和支持向量有关。</p></li><li><p>合并损失函数(linge loss function)
+$$b^*=y_i- \sum_{i=1}^N\alpha_i^*y_i(x_i\cdot x_j)$$</li><li>求得分离超平面
+$$\omega^* \cdot x+b^* =0$$</li><li>分类决策函数：
+$$f(x)=sign(\omega^* \cdot x+b^*)$$</li></ol><p>上述过程需要满足KKT(Karush-Kuhn-Tucker)条件，即：
+<img src=/images/posts/ML/kkt.JPG alt></p><p>对于任意样本$(x_i, y_i)$，总有$\alpha_i=0$ 或 $y_if(x_i)-1=0$。当$\alpha_i \gt 0$时，则必有$y_if(x_i)=1$，则所有的样本点位于最大间隔边界，是一个支持向量。所以最终模型只和支持向量有关。</p></li><li><p>合并损失函数(linge loss function)
 线性支持向量机的另一种最优化问题是，最小化以下函数：
-$$\sum_{i=1}^{N}[1-y_i(\omega \cdot x_i + b)]_++\lambda||\omega||^2$$</p><p>其中第一项为合页损失函数。</p></li></ol><h3 id=三非线性支持向量机与核函数>三、非线性支持向量机与核函数</h3><ol><li>核技巧
-基本想法：通过一个非线性变换将输入空间（欧式空间$\mathcal{R}^n$或离散集合）对应于一个特征空间（希尔伯特空间$\mathcal{H}$），使得在输入空间$\mathcal{R}^n$中的超曲面模型对应特征空间$\mathcal{H}$中的超平面模型。<ul><li>核函数的定义：
-<img src=/images/posts/ML/kernel.JPG alt></li></ul></li><li>在支持向量机中的应用：
-在核函数$K(x,z)$给定的条件下，可以利用解线性分类问题的方法求解非线性分类问题的支持向量机。在实际应用中，往往依赖领域知识直接选择核函数，核函数选择的有效性需要通过实验验证。</li><li>正定核
-这部分需要泛函分析的知识，目前来看可能需要研究生再看懂了。
+$$\sum_{i=1}^{N}[1-y_i(\omega \cdot x_i + b)]_++\lambda||\omega||^2$$</p><p>其中第一项为合页损失函数。</p></li></ol><h3 id=三非线性支持向量机与核函数>三、非线性支持向量机与核函数</h3><ol><li><p>核技巧</p><p>基本想法：通过一个非线性变换将输入空间（欧式空间$\mathcal{R}^n$或离散集合）对应于一个特征空间（希尔伯特空间$\mathcal{H}$），使得在输入空间$\mathcal{R}^n$中的超曲面模型对应特征空间$\mathcal{H}$中的超平面模型。</p><ul><li>核函数的定义：
+<img src=/images/posts/ML/kernel.JPG alt></li></ul></li><li><p>在支持向量机中的应用：</p><p>在核函数$K(x,z)$给定的条件下，可以利用解线性分类问题的方法求解非线性分类问题的支持向量机。在实际应用中，往往依赖领域知识直接选择核函数，核函数选择的有效性需要通过实验验证。</p></li><li><p>正定核</p><p>这部分需要泛函分析的知识，目前来看可能需要研究生再看懂了。
 对称函数$K(x,z)$为正定核的充要条件如下：
-对任意$x_i \in \mathcal{X}, i=1,2,\dots,m$，任意正整数$m$，对称函数$K(x,z)$对应的Gram矩阵是半正定的。</li><li>常用核函数<ul><li>多项式核函数(polynomial kernel function)
+对任意$x_i \in \mathcal{X}, i=1,2,\dots,m$，任意正整数$m$，对称函数$K(x,z)$对应的Gram矩阵是半正定的。</p></li><li><p>常用核函数</p><ul><li>多项式核函数(polynomial kernel function)
 $$K(x,z)=(x\cdot z+1)^p$$</li><li>高斯核函数(Gaussian kernel function)
 $$K(x,z)=exp(-\frac{||x-z||^2}{2\sigma^2})$$</li><li>字符串核函数(string kernel function)
-用于文本分类、信息检索、生物信息学等方面。直观上，两个字符串相同的子串越多，它们就越相似、字符串核函数的值就越大。</li></ul></li><li>求解方法
-输入：训练集$T$；
-输出：分离超平面和分类决策函数
-(1)构造并求解约束最优化问题：
-$$\min_{\alpha} \frac{1}{2} \sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_i \alpha_j y_i y_j K(x_i \cdot x_j)-\sum_{i=1}^{N}\alpha_i \<br>s.t. \qquad \sum_{i=1}^{N} \alpha_iy_i=0 \<br>0 \leq \alpha_i \leq C, i = 1,2,\dots,N
+用于文本分类、信息检索、生物信息学等方面。直观上，两个字符串相同的子串越多，它们就越相似、字符串核函数的值就越大。</li></ul></li><li><p>求解方法</p><ul><li>输入：训练集$T$；</li><li>输出：分离超平面和分类决策函数</li></ul><ol><li>构造并求解约束最优化问题：
+$$\min_{\alpha} \frac{1}{2} \sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_i \alpha_j y_i y_j K(x_i \cdot x_j)-\sum_{i=1}^{N}\alpha_i $$
 $$
-并求出最优解$\alpha^*$。
-(2)计算
+s.t. \qquad \sum_{i=1}^{N} \alpha_iy_i=0 $$
+$$
+0 \leq \alpha_i \leq C, i = 1,2,\dots,N
+$$
+并求出最优解$\alpha^*$。</li><li>计算
 $$\omega^* = \sum_{i=1}^N\alpha_i^*y_ix_i$$
 并选择$\alpha^*$的一个适合条件$0\lt\alpha^*\lt C$，计算
-$$b^*=y_i- \sum_{i=1}^N\alpha_i^*y_iK(x_i\cdot x_j)$$
-(3)求得分离超平面
-$$\omega^*\cdot x+b^*=0$$
-分类决策函数：
-$$f(x)=sign\left( \sum_{i=1}^N\alpha_i^*y_iK(x\cdot x_i+b^*)\right)$$</li></ol><h3 id=四序列最小最优算法smo>四、序列最小最优算法SMO</h3><p>算法描述如下：
-输入：训练集$T$
-输出：近似解$\hat{\alpha}$
-(1)取初值$\alpha^{(0)}=0$，令$k=0$。
-(2)选取优化变量$\alpha_1^{(k)}, \alpha_2^{(k)}$，解析求解两个变量的最优化问题：
-<img src=/images/posts/ML/smo.JPG alt>
-求得最优解$\alpha_1^{(k+1)}, \alpha_2^{(k+1)}$，更新$\alpha$为$\alpha^{(k+1)}$。
-(3)若在精度$\epsilon$范围内满足停机条件:
-<img src=/images/posts/ML/smo2.JPG alt>
-其中，
+$$b^*=y_i- \sum_{i=1}^N\alpha_i^*y_iK(x_i\cdot x_j)$$</li><li>求得分离超平面
+$$\omega^* \cdot x+b^*=0$$</li><li>分类决策函数：
+$$f(x)=sign\left( \sum_{i=1}^N\alpha_i^* y_iK(x\cdot x_i+b^*)\right)$$</li></ol></li></ol><h3 id=四序列最小最优算法smo>四、序列最小最优算法SMO</h3><p>算法描述如下：</p><ul><li><p>输入：训练集$T$</p></li><li><p>输出：近似解$\hat{\alpha}$</p></li></ul><ol><li><p>取初值$\alpha^{(0)}=0$，令$k=0$。</p></li><li><p>选取优化变量$\alpha_1^{(k)}, \alpha_2^{(k)}$，解析求解两个变量的最优化问题：
+<img src=/images/posts/ML/smo.JPG alt></p></li></ol><p>求得最优解$\alpha_1^{(k+1)}, \alpha_2^{(k+1)}$，更新$\alpha$为$\alpha^{(k+1)}$。</p><ol start=3><li>若在精度$\epsilon$范围内满足停机条件:
+<img src=/images/posts/ML/smo2.JPG alt></li></ol><p>其中，
 $$g(x_i)=\sum_{j-1}^N\alpha_jy_jK(x_j,x_i)+b$$
-则转(4)；否则令$k=k+1$，转(2)；
-(4)取$\hat{\alpha}=\alpha^{(k+1)}$。</p></div><div class=btn-improve-page><a href=https://github.com/ztqakita/ztqakita.github.io/edit//content/posts/machine-learning/support-vector.md><i class="fas fa-code-branch"></i>Improve this page</a></div><hr><div class="row next-prev-navigator"><div class="col-md-12 next-article"><a href=/posts/machine-learning/decision-tree/ class="btn btn-outline-info"><span>Next <i class="fas fa-chevron-circle-right"></i></span><br><span>Decision Tree</span></a></div></div><hr></div></div></div><a id=scroll-to-top class=btn><i class="fas fa-chevron-circle-up"></i></a></section><section class=toc-section id=toc-section><div class=toc-holder><h5 class="text-center pl-3">Table of Contents</h5><hr><div class=toc><nav id=TableOfContents><ul><li><a href=#支持向量机模型>支持向量机模型</a><ul><li><a href=#一线性可分支持向量机与硬间隔最大化>一、线性可分支持向量机与硬间隔最大化</a></li><li><a href=#二线性支持向量机与软间隔最大化>二、线性支持向量机与软间隔最大化</a></li><li><a href=#三非线性支持向量机与核函数>三、非线性支持向量机与核函数</a></li><li><a href=#四序列最小最优算法smo>四、序列最小最优算法SMO</a></li></ul></li></ul></nav></div></div></section></div><footer class="container-fluid text-center align-content-center footer pb-2"><div class="container pt-5"><div class="row text-left"><div class="col-md-4 col-sm-12"><h5>Navigation</h5><ul><li class=nav-item><a class=smooth-scroll href=#about>About</a></li><li class=nav-item><a class=smooth-scroll href=#skills>Skills</a></li><li class=nav-item><a class=smooth-scroll href=#experiences>Experiences</a></li><li class=nav-item><a class=smooth-scroll href=#projects>Projects</a></li><li class=nav-item><a class=smooth-scroll href=#recent-posts>Recent Posts</a></li><li class=nav-item><a class=smooth-scroll href=#achievements>Achievements</a></li></ul></div><div class="col-md-4 col-sm-12"><h5>Contact me:</h5><ul><li><span>Email:</span> <span>ztqakita@163.com</span></li><li><span>Phone:</span> <span>(+86)18618180071</span></li></ul></div><div class="col-md-4 col-sm-12"><p>Stay up to date with email notification</p><form><div class=form-group><input type=email class=form-control id=exampleInputEmail1 aria-describedby=emailHelp placeholder="Enter email">
+则转(4)；否则令$k=k+1$，转(2)；</p><ol start=4><li>取$\hat{\alpha}=\alpha^{(k+1)}$。</li></ol></div><div class=btn-improve-page><a href=https://github.com/ztqakita/ztqakita.github.io/edit//content/posts/machine-learning/support-vector.md><i class="fas fa-code-branch"></i>Improve this page</a></div><hr><div class="row next-prev-navigator"><div class="col-md-12 next-article"><a href=/posts/machine-learning/decision-tree/ class="btn btn-outline-info"><span>Next <i class="fas fa-chevron-circle-right"></i></span><br><span>Decision Tree</span></a></div></div><hr></div></div></div><a id=scroll-to-top class=btn><i class="fas fa-chevron-circle-up"></i></a></section><section class=toc-section id=toc-section><div class=toc-holder><h5 class="text-center pl-3">Table of Contents</h5><hr><div class=toc><nav id=TableOfContents><ul><li><a href=#支持向量机模型>支持向量机模型</a><ul><li><a href=#一线性可分支持向量机与硬间隔最大化>一、线性可分支持向量机与硬间隔最大化</a></li><li><a href=#二线性支持向量机与软间隔最大化>二、线性支持向量机与软间隔最大化</a></li><li><a href=#三非线性支持向量机与核函数>三、非线性支持向量机与核函数</a></li><li><a href=#四序列最小最优算法smo>四、序列最小最优算法SMO</a></li></ul></li></ul></nav></div></div></section></div><footer class="container-fluid text-center align-content-center footer pb-2"><div class="container pt-5"><div class="row text-left"><div class="col-md-4 col-sm-12"><h5>Navigation</h5><ul><li class=nav-item><a class=smooth-scroll href=#about>About</a></li><li class=nav-item><a class=smooth-scroll href=#skills>Skills</a></li><li class=nav-item><a class=smooth-scroll href=#experiences>Experiences</a></li><li class=nav-item><a class=smooth-scroll href=#projects>Projects</a></li><li class=nav-item><a class=smooth-scroll href=#recent-posts>Recent Posts</a></li><li class=nav-item><a class=smooth-scroll href=#achievements>Achievements</a></li></ul></div><div class="col-md-4 col-sm-12"><h5>Contact me:</h5><ul><li><span>Email:</span> <span>ztqakita@163.com</span></li><li><span>Phone:</span> <span>(+86)18618180071</span></li></ul></div><div class="col-md-4 col-sm-12"><p>Stay up to date with email notification</p><form><div class=form-group><input type=email class=form-control id=exampleInputEmail1 aria-describedby=emailHelp placeholder="Enter email">
 <small id=emailHelp class="form-text text-muted">We'll never share your email with anyone else.</small></div><button type=submit class="btn btn-info">Submit</button></form></div></div></div><hr><div class=container><div class="row text-left"><div class=col-md-4><a id=theme href=https://github.com/hossainemruz/toha target=#><img src=/images/theme-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_32x0_resize_box_2.png>
 Toha</a></div><div class="col-md-4 text-center">© 2020 Copyright.</div><div class="col-md-4 text-right"><a id=hugo href=https://gohugo.io/>Powered by
 <img src=/images/hugo-logo.svg alt="Hugo Logo" height=18></a></div></div></div></footer><script src=/js/jquery-3.4.1.min.js></script><script src=/js/popper.min.js></script><script src=/js/bootstrap.min.js></script><script src=/js/navbar.js></script><script src=/js/main.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js></script><script src=/js/single.js></script><script>hljs.initHighlightingOnLoad()</script><script type=text/javascript async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">MathJax.Hub.Config({tex2jax:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$']],processEscapes:!0,processEnvironments:!0,skipTags:['script','noscript','style','textarea','pre'],TeX:{equationNumbers:{autoNumber:"AMS"},extensions:["AMSmath.js","AMSsymbols.js"]}}}),MathJax.Hub.Queue(function(){var b=MathJax.Hub.getAllJax(),a;for(a=0;a<b.length;a+=1)b[a].SourceElement().parentNode.className+=' has-jax'}),MathJax.Hub.Config({TeX:{equationNumbers:{autoNumber:"AMS"}}})</script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css integrity=sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js integrity=sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz crossorigin=anonymous></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js integrity=sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI crossorigin=anonymous onload=renderMathInElement(document.body)></script></body></html>

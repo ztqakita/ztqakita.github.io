@@ -26,9 +26,7 @@ Hobby</button></div></div><div class="container filtr-projects"><div class=row i
 函数间隔：对于给定的训练数据集$T$和超平面$(\omega, b)$，则 $$\hat{\gamma_i}=y_i(\omega \cdot x_i+b)$$
 超平面关于数据集$T$的函数间隔为 $$\hat{\gamma}=\min_{i=1,\dots,N}\hat{\gamma_i}$$ 几何间隔：对于给定的训练数据集$T$和超平面$(\omega, b)$，则 $$\hat{\gamma_i}=y_i(\frac{\omega}{||\omega||} \cdot x_i+\frac{b}{||\omega||})$$
 其中$||\omega||$是L2范数。 间隔最大化
-输入：线性可分数据集$T$ 输出：最大间隔分离超平面和分类决策函数 构造并求解约束最优化问题： $$\min_{\omega,b} \quad \frac{1}{2}||\omega||^2 \
-s.t. \qquad y_i(\omega \cdot x_i+b)-1 \geq 0, \quad i=1, 2, \dots, N$$ 求解得到最优解$\omega^*, b^*$。
-支持向量 训练集的样本点中与分离超平面距离最近的样本点的实例： $$H_1:\omega \cdot x_i+b=1 \ H_2:\omega \cdot x_i+b=-1$$ 支持向量机由这些很少的“重要”训练样本决定。</p></div><div class=card-footer><span class=float-left>March 29, 2021</span>
+输入：线性可分数据集$T$ 输出：最大间隔分离超平面和分类决策函数 构造并求解约束最优化问题： $$\min_{\omega,b} \quad \frac{1}{2}||\omega||^2 $$ $$ s.t. \qquad y_i(\omega \cdot x_i+b)-1 \geq 0, \quad i=1, 2, \dots, N$$ 求解得到最优解$\omega^, b^$。 支持向量</p></div><div class=card-footer><span class=float-left>March 29, 2021</span>
 <a href=/posts/machine-learning/support-vector/ class="float-right btn btn-outline-info btn-sm">Read</a></div></div></a></div><div class="col-lg-4 col-md-6 pt-2 post-card"><a href=/posts/machine-learning/decision-tree/ class=post-card-link><div class=card><div class=card-head><img class=card-img-top src=/images/default-hero.jpg alt="Card image cap"></div><div class=card-body><h5 class=card-title>Decision Tree</h5><p class="card-text post-summary">原理 决策树模型与学习 决策树的内部节点表示一个特征或属性，叶节点表示一个类。
 if-then规则：互斥且完备 本质： 从训练数据集中归纳出一组分类规则（估计出条件概率模型） 损失函数：正则化的极大似然函数 学习算法：启发式方法，得到(sub-optimal)的决策树 一、特征选择 准则：信息增益
 熵： 设$X$是一个取有限个值的离散随机变量，定义为： $$H(X) = -\sum_{i=1}^n p_i\log p_i$$
