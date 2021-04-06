@@ -37,7 +37,7 @@ $$f(x) = sign(\omega^* x + b^*)$$
    $$\min_{\omega,b} \quad \frac{1}{2}||\omega||^2 $$
    $$
    s.t. \qquad y_i(\omega \cdot x_i+b)-1 \geq 0, \quad i=1, 2, \dots, N$$
-   - 求解得到最优解$\omega^*, b^*$。
+   - 求解得到最优解$\omega^* , b^*$。
 
 4. 支持向量
     - 训练集的样本点中与分离超平面距离**最近的样本点**的实例：
