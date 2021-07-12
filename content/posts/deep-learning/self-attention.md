@@ -5,7 +5,7 @@ hero: /images/posts/DL/139-deep-learning.svg
 menu:
   sidebar:
     name: Self-attention
-    identifier: Self-attention
+    identifier: self-attention
     parent: deep-learning
     weight: 10
 math: true

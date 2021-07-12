@@ -18,7 +18,7 @@ company:
 resume: "files/resume.pdf"
 
 # a summary about you
-summary: 'My major is computer science. I have done many interesting school projects and currently I am doing research intern in THUIR. For future I prepare to do research in Brain-inspired computing.'
+summary: 'My major is computer science. I have done many interesting school projects and currently I am doing research intern in AAIS, PKU. For future I prepare to do research in Brain-inspired computing.'
 
 # your social links
 # give as many as you want. use font-awesome for the icons.
@@ -38,7 +38,7 @@ softSkills:
   percentage: 90
   color: yellow
 - name: Programming
-  percentage: 80
+  percentage: 90
   color: sky
 - name: Deligent
   percentage: 90

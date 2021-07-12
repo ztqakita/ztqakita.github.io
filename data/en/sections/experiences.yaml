@@ -20,8 +20,22 @@ experiences:
   - designation: Research Intern
     start: Jan 2021
     # don't provide end date if you are currently working there. It will be replaced by "Present"
-    # end: Dec 2020
+    end: Apr 2020
     # give some points about what was your responsibilities at the company.
     responsibilities:
     - EEG data analysis.
     - Analyze the relation between EEG and user behaviour.
+  - company:
+    name: Peking University
+    url: "https://www.pku.edu.cn"
+    location: Remote intern
+    # company overview
+    overview: Supervised by Pro.Si Wu
+  positions:
+  - designation: Research Intern
+    start: July 2021
+    # don't provide end date if you are currently working there. It will be replaced by "Present"
+    # end: Apr 2020
+    # give some points about what was your responsibilities at the company.
+    responsibilities:
+    - Global t0 local information processing

@@ -5,7 +5,7 @@ hero: /images/posts/DL/139-deep-learning.svg
 menu:
   sidebar:
     name: Transformer
-    identifier: Transformer
+    identifier: transformer
     parent: deep-learning
     weight: 10
 math: true
