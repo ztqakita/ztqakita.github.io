@@ -4,7 +4,7 @@ date: 2021-07-20T06:00:20+06:00
 hero: /images/posts/DL/139-deep-learning.svg
 menu:
   sidebar:
-    name: [BIC] reservoir decision making network
+    name: reservoir decision making network
     identifier: rdmn
     parent: PR
     weight: 10
@@ -28,18 +28,10 @@ math: true
 > **Summary**: The decision-making model consists of several **competing neurons**, with each of them representing **one category**(pattern). Each decision-making neuron receives inputs from the reservoir module and they compete with each other via **mutual inhibition**, with the winner reporting the recognition result.
 
 - **The dynamics of the module**:
-$$
-\begin{equation}
-x_i(t) = J_Es_i+\sum_{j\neq i}^{N_{dm}}J_Ms_j+I_i
-\end{equation} \\
-\begin{equation}
-r_i(t) = \frac{\beta}{\gamma}\ln{\left[ 1+ exp\left( \frac{x_i - \theta}{\alpha}\right)\right]}
-\end{equation} \\ 
-\begin{equation}
-\tau_s \frac{ds_i}{dt} = - s_i + \gamma(1-s_i)r_i
-\end{equation}
-$$
-Eq.(3) describes the slow dynamics of the synaptic current due to the activity-dependent NMDA receptors.
+
+    ![](/images/posts/paper/dm.JPG)
+
+    Eq.(3) describes the slow dynamics of the synaptic current due to the activity-dependent NMDA receptors.
 
 - **Parameters**:
     - $x_i$: synaptic inputs received by the $i$th neuron.
@@ -65,6 +57,7 @@ Eq.(3) describes the slow dynamics of the synaptic current due to the activity-d
 - **Structure of model**
   - Consists of $L$ forwardly connected layers, and neurons in each layer are connected recurrently.
   - Only Layer 1 receives the external input.
-  -  
 
+### Intergrate two model
+- 
 

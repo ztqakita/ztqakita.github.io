@@ -1,8 +1,8 @@
 ---
-title: Neural Computation
+title: Computational Neuroscience 
 menu:
   sidebar:
-    name: Neural Computation
+    name: Computational Neuroscience
     identifier: NC
     weight: 300
 ---
