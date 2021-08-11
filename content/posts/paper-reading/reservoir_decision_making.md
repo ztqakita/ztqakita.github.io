@@ -59,5 +59,14 @@ math: true
   - Only Layer 1 receives the external input.
 
 ### Intergrate two model
-- 
+- The reservoir and decision-making modules are integrated via a linear read-out matrix to carry out a discrimination task, where the read-out matrix is optimized using known examples.
+  ![](/images/posts/paper/2.JPG)
+    - $W_{lj}^{dm,i}$ denotes the connection weight from neuron j in layer l of the reservoir network to neuron i in the decision-making module.
+    - $I^*_0$ is the optimal feedforawrd input specified by the DM-boundary.
+- We optimize the read-out matrix Wdm by minimizing the error function E using backpropagation through time.
+  ![](/images/posts/paper/3.JPG)
 
+### Model application
+- Looming pattern discrimination
+- Gait recognition
+- Event-based gait recognition

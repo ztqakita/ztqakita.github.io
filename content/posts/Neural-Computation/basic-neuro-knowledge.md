@@ -12,7 +12,7 @@ math: true
 ---
 
 # I. The Mammalian Visual System
-## Structure
+## 1. Structure
 ![](/images/posts/NC/2.JPG)
 
 
