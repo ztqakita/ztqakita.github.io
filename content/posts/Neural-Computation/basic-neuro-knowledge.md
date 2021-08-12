@@ -5,7 +5,7 @@ hero: /images/posts/DL/139-deep-learning.svg
 menu:
   sidebar:
     name: Neuroscience Basic Knowledge
-    identifier: Neuroscience Basic Knowledge
+    identifier: NBK
     parent: NC
     weight: 10
 math: true
