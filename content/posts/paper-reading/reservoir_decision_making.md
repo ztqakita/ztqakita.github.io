@@ -70,3 +70,7 @@ math: true
 - Looming pattern discrimination
 - Gait recognition
 - Event-based gait recognition
+  A key characteristic of biological decision-making is its **event-based nature**, i.e., the neural system will automatically detect and recognize the presence of an input pattern. It saves the effort of signal detection.
+
+### Future work
+RDMN model cannot explicitly encode **order information**. The order of a spatio-temporal pattern contains important **cause–effect information and temporal correlations**, which we humans actively exploit to discriminate spatio-temporal patterns. Thus, incorporating this **prior knowledge** into models should significantly improve the performance of spatio-temporal pattern discrimination tasks.
