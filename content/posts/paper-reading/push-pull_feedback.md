@@ -10,6 +10,10 @@ menu:
     weight: 10
 math: true
 ---
+## Front Word
+To understand this paper, you need a strong neuroscience background, especially knowing the **Hopfield model** and **Hebbian theory**. So before reading this paper, please preview the theories mentioned above!
+
+To be honest, I still cannot understand the details quite well LoL :)
 ## Abstract
 - In addition to feedforward connections, there exist abundant **feedback connections** in a neural pathway.
 - This paper investigate the role of feedback in **hierarchical information retrieval**.
@@ -51,10 +55,14 @@ According to the figure above, $\xi$ means memory pattern, and we can construct 
 - feedforward connections:
   $$W_{ij}^{2,1} = \sum_{\alpha, \beta, \gamma} \xi_i^{\alpha,\beta} \xi_j^{\alpha,\beta,\gamma} / N,$$ 
   $$W_{ij}^{3,2} = \sum_{\alpha, \beta} \xi_i^{\alpha} \xi_j^{\alpha,\beta} / N.$$
-- feedback connections:
 
 To quantify the retrieval performance, we define $m(t)$ to measure the overlap between neural state and memory pattern.
 $$
 m^{\alpha,\beta,\gamma}(t) = \frac{1}{N} \sum_{i=1}^N \xi_i^{\alpha,\beta,\gamma} x_i^1(t), 
 $$
 where $-1 \lt m^{\alpha,\beta,\gamma}(t) \lt 1$ represents the retrieval accuracy of the memory pattern $\xi^{\alpha,\beta,\gamma}$.
+
+## **Hierarchical Information Retrieval With push-pull Feedback**
+### Push Feedback
+
+### Pull Feedback
