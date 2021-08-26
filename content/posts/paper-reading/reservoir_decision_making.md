@@ -10,6 +10,8 @@ menu:
     weight: 10
 math: true
 ---
+> Lin, Xiaohan, et al. "A brain-inspired computational model for spatio-temporal information processing." Neural Networks 143 (2021): 74-87.
+
 ## Abstract
 - **Current method**: Explicit feature extraction, which requires lots of labeled data.
 - **Novel brain-inspired computational model**: 

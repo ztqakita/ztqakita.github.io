@@ -10,6 +10,8 @@ menu:
     weight: 10
 math: true
 ---
+> Liu, Xiao, et al. "Push-pull feedback implements hierarchical information retrieval efficiently." Advances in Neural Information Processing Systems 32 (2019): 5701-5710.
+
 ## Front Word
 To understand this paper, you need a strong neuroscience background, especially knowing the **Hopfield model** and **Hebbian theory**. So before reading this paper, please preview the theories mentioned above!
 

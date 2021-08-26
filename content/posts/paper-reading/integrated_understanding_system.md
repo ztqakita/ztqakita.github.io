@@ -10,6 +10,7 @@ menu:
     weight: 10
 math: true
 ---
+> McClelland, James L., et al. "Placing language in an integrated understanding system: Next steps toward human-level performance in neural language models." Proceedings of the National Academy of Sciences 117.42 (2020): 25966-25974.
 
 ## Abstract
 For humans, language is a part of a system for understanding and communication about situations. There are some domain-general principles of biological neural network:
