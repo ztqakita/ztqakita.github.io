@@ -23,6 +23,11 @@ To be honest, I still cannot understand the details quite well LoL :)
   - **Mechanism**: information retrieval goes from **rough to fine**, aided by **dynamical** push-pull feedback from higher to lower layers. 
   - **Function**: 我们阐明，最佳反馈应该是动态的，随着时间的推移从正（推）到负（拉）而变化，它们分别抑制了来自不同类别和相同类别的模式关联所带来的干扰。   
 
+![](/images/posts/paper/11.JPG)
+Gilad等人发现猴子在执行从复杂背景中检测边界时，初级视皮层（V1）的神经元群体先在早期出现增长，表现出“push”现象，而在后期减弱，表现出“pull”的现象（如图A所示）。这种现象被称为push-pull现象。
+
+> 神经系统面临一个两难问题：一方面，为了对物体之间的层级类别关系进行编码，神经系统需要关联的神经表征；另一方面，为了可靠地检索信息，又需要克服这些相关性带来的计算噪声。在神经网络中如何实现可靠的关联信息检索是一个没有解决的问题。
+> 
 ## **A model for Hierarchical Information Representation**
 
 The model consists of three layers which store **three-level** of hierarchical memory patterns. From button to top, we call the three layers:
@@ -33,11 +38,10 @@ The model consists of three layers which store **three-level** of hierarchical m
 
 Neurons in the **same layer** are connected **recurrently** with each other to function as an associative memory. **Between layers**, neurons communicate via **feedforward and feedback connections**.
 
-> Symbol Declaration:
-> $x_i^l(t)$: the state of neuron $i$ in layer $l$ at time $t$. value takes $\pm 1$. \
-> $W_{ij}^{l}$: symmetric recurrent connections from neuron $j$ to $i$ in layer $l$. \
-> $W_{ij}^{l+1, l}$: the **feedforward connections** from neuron $j$ of layer $l$ to neuron $i$ in layer $l + 1$. \
-> $W_{ij}^{l, l+1}$: the **feedback connections** from neuron $j$ of layer $l + 1$ to neuron $i$ of layer $l$. 
+- $x_i^l(t)$: the state of neuron $i$ in layer $l$ at time $t$. value takes $\pm 1$. 
+- $W_{ij}^{l}$: symmetric recurrent connections from neuron $j$ to $i$ in layer $l$. 
+- $W_{ij}^{l+1, l}$: the **feedforward connections** from neuron $j$ of layer $l$ to neuron $i$ in layer $l + 1$. 
+- $W_{ij}^{l, l+1}$: the **feedback connections** from neuron $j$ of layer $l + 1$ to neuron $i$ of layer $l$. 
 
 There are 3 layers in this model, and each layer has $N$ neurons.
 The neuronal dynamics follows the Hopfield model, which is written as

@@ -13,3 +13,7 @@ math: true
 > Yang, G.R., Joglekar, M.R., Song, H.F. et al. Task representations in neural networks trained to perform many cognitive tasks. Nat Neurosci 22, 297–306 (2019). https://doi.org/10.1038/s41593-018-0310-2
 
 ## Abstract
+They trained single network models to perform **20 cognitive tasks** that depend on working memory, decision making, categorization, and inhibitory control.
+- **What they find:**
+  - recurrent units can develop into clusters that are functionally specialized for different cognitive processes
+  - **compositionality of task representations**: one task can be performed by recombining instructions for other tasks.
