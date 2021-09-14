@@ -17,3 +17,4 @@ They trained single network models to perform **20 cognitive tasks** that depend
 - **What they find:**
   - recurrent units can develop into clusters that are functionally specialized for different cognitive processes
   - **compositionality of task representations**: one task can be performed by recombining instructions for other tasks.
+
