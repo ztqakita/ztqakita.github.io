@@ -1,0 +1,58 @@
+# section information
+section:
+  name: Experiences
+  id: experiences
+  enable: true
+  weight: 3
+  showOnNavbar: true
+  # Can optionally hide the title in sections
+  # hideTitle: true 
+
+# Your experiences
+experiences:
+- company:
+    name: TsingHua University
+    url: "https://www.tsinghua.edu.cn"
+    location: Remote intern
+    # company overview
+    overview: Advised by Prof. ChangShui Zhang.
+  positions:
+  - designation: Research Intern
+    start: July 2020
+    # don't provide end date if you are currently working there. It will be replaced by "Present"
+    end: Sep 2020
+    # give some points about what was your responsibilities at the company.
+    responsibilities:
+    - Preprocess EEG data.
+    - Predict emotion and shooting ability based on multimode data.
+
+- company:
+    name: TsingHua University
+    url: "https://www.tsinghua.edu.cn"
+    location: Remote intern
+    # company overview
+    overview: Worked with THUIR research group.
+  positions:
+  - designation: Research Intern
+    start: Jan 2021
+    # don't provide end date if you are currently working there. It will be replaced by "Present"
+    end: Apr 2020
+    # give some points about what was your responsibilities at the company.
+    responsibilities:
+    - EEG data analysis.
+    - Analyze the relation between EEG and user behaviour.
+
+- company:
+    name: Peking University
+    url: "https://www.pku.edu.cn"
+    location: Remote research study
+    # company overview
+    overview: Supervised by Prof. Si Wu
+  positions:
+  - designation: Incoming Ph.D. student
+    start: July 2021
+    # don't provide end date if you are currently working there. It will be replaced by "Present"
+    # end: Apr 2020
+    # give some points about what was your responsibilities at the company.
+    responsibilities:
+    - Global to local information processing
