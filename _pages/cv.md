@@ -6,7 +6,7 @@ nav: true
 nav_order: 5
 cv_pdf: /assets/pdf/resume.pdf # you can also use external links here
 cv_format: rendercv # options: rendercv, jsonresume
-description: Academic CV generated from resume.pdf.
+description: Academic CV of mine.
 toc:
   sidebar: left
 ---

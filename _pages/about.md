@@ -2,23 +2,24 @@
 layout: about
 title: about
 permalink: /
-subtitle: Brain-inspired world models. Self-supervised reinforcement learning. Computational neuroscience.
+subtitle: "The brain is not a passive mirror reflecting the world, but an active engine shaping the world."
 
 profile:
   align: right
   image: ztq.png
   image_circular: true # crops the image to make it circular
   more_info: >
-    <p>Ph.D. student, Peking University</p>
-    <p>Advised by Prof. Si Wu</p>
+    <p>Ph.D. student</p>
+    <p>Peking University</p>
+    <p>Beijing, China</p>
 
-selected_papers: false # includes a list of papers marked as "selected={true}"
+selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 
 announcements:
   enabled: true # includes a list of news items
   scrollable: true # adds a vertical scroll bar if there are more than 3 news items
-  limit: 5 # leave blank to include all the news in the `_news` folder
+  limit: 3 # leave blank to include all the news in the `_news` folder
 
 latest_posts:
   enabled: true
@@ -26,8 +27,13 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-I am a Ph.D. student in Integrated Life Sciences at Peking University, advised by Prof. Si Wu. My research focuses on latent world models, self-supervised reinforcement learning, and computational neuroscience.
+I am currently a fourth-year Ph.D. student at Peking University, advised by Prof. [Si Wu](https://www.psy.pku.edu.cn/szdw/qzjy/jsyjy/ws/index.htm). My research focuses on world models and computational neuroscience.
 
-I am interested in brain-inspired world models, latent action models, structure learning, goal-conditioned reinforcement learning, skill learning, zero-shot generalization, and connectome-constrained model simulation and training.
+My current research interests are:
+- **Latent World Models**: brain-inspired world models, latent action models, structure learning.
+- **Brain-inspired Representation Learning**: phase coding, multi-scale coding, equivariant map.
+- **Self-supervised Reinforcement Learning**: goal-conditioned RL, skill learning, zero-shot generalization.
+- **Whole-brain Simulation**: connectome-constrained models, sensorimotor closed-loop training.
 
-Older notes and posts have not been deleted; they are archived in the repository and can be migrated into the new blog format later.
+My long-term academic goal is to learn a general embodied agent from vision and self-motion. I see world models as a language-independent way to learn general representations from continuous perceptual signals. I am also exploring whether bottom-up hierarchical abstraction from pure vision sequences can lead to compact, compositional, and transferable abstract structures.
+
