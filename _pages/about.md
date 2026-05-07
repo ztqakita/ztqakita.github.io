@@ -2,17 +2,17 @@
 layout: about
 title: about
 permalink: /
-subtitle: Computer science. Brain-inspired computing. Research and projects.
+subtitle: Brain-inspired world models. Self-supervised reinforcement learning. Computational neuroscience.
 
 profile:
   align: right
   image: ztq.png
   image_circular: true # crops the image to make it circular
   more_info: >
-    <p>BUPT</p>
-    <p>Research intern in AAIS, PKU</p>
+    <p>Ph.D. student, Peking University</p>
+    <p>Advised by Prof. Si Wu</p>
 
-selected_papers: true # includes a list of papers marked as "selected={true}"
+selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 
 announcements:
@@ -26,8 +26,8 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-My major is computer science. I have done many interesting school projects and am currently doing research as an intern in AAIS, PKU. For the future, I am preparing to do research in brain-inspired computing.
+I am a Ph.D. student in Integrated Life Sciences at Peking University, advised by Prof. Si Wu. My research focuses on latent world models, self-supervised reinforcement learning, and computational neuroscience.
 
-I love coding, research study, and building useful projects. This site now uses the academic Jekyll template while the previous Hugo site source is preserved in `_legacy_hugo_site/`.
+I am interested in brain-inspired world models, latent action models, structure learning, goal-conditioned reinforcement learning, skill learning, zero-shot generalization, and connectome-constrained model simulation and training.
 
 Older notes and posts have not been deleted; they are archived in the repository and can be migrated into the new blog format later.

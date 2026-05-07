@@ -3,18 +3,18 @@
 # -----------------------------------------------------------------------------
 
 title: ztqakita's Blog # the website title (if blank, full name will be used instead)
-first_name: Brandon
+first_name: Tianqiu
 middle_name:
 last_name: Zhang
 contact_note: >
   Email is the best way to reach me.
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  Portfolio and personal blog of Brandon Zhang.
+  Portfolio and personal blog of Tianqiu Zhang.
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
   Photos from <a href="https://unsplash.com" target="_blank">Unsplash</a>.
-keywords: Brandon Zhang, ztqakita, computer science, brain-inspired computing, academic website, portfolio # add your own keywords or leave empty
+keywords: Tianqiu Zhang, ztqakita, brain-inspired computing, latent world models, computational neuroscience, academic website, portfolio # add your own keywords or leave empty
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: 🧠 # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
@@ -271,7 +271,7 @@ display_categories: ["external-services"] # these categories will be displayed o
 
 scholar:
   last_name: [Zhang]
-  first_name: [Brandon]
+  first_name: [Tianqiu]
 
   style: apa
   locale: en
