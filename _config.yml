@@ -2,12 +2,12 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-title: Tianqiu Zhang's Blog # the website title (if blank, full name will be used instead)
+title: Tianqiu Zhang # the website title (if blank, full name will be used instead)
 first_name: Tianqiu
 middle_name:
 last_name: Zhang
 contact_note: >
-  Email is the best way to reach me.
+  You can reach me via email or X (ID: @ztqakita).
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   Portfolio and personal blog of Tianqiu Zhang.
 footer_text: >

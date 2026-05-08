@@ -4,6 +4,8 @@
 cv_pdf: /assets/pdf/resume.pdf # path to your CV PDF file
 email: tianqiuakita@stu.pku.edu.cn # your email address
 github_username: ztqakita
+x_username: ztqakita
+linkedin_username: tianqiu-zhang-7b410b409
 rss_icon: true # comment this line to hide the RSS icon
 # scholar_userid: # your Google Scholar ID
 # wechat_qr: # filename of your wechat qr-code saved as an image (e.g., wechat-qr.png if saved to assets/img/wechat-qr.png)
