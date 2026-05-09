@@ -7,3 +7,23 @@
 
 "Vision":
   color: "#009f36"
+
+"ICML":
+  url: https://icml.cc/
+  color: "#3b6fb6"
+
+"ICLR":
+  url: https://iclr.cc/
+  color: "#8a5fbf"
+
+"ICML Workshop":
+  url: https://icml.cc/virtual/
+  color: "#2f8f83"
+
+"eLife":
+  url: https://elifesciences.org/
+  color: "#c45a7d"
+
+"Neural Networks":
+  url: https://www.sciencedirect.com/journal/neural-networks
+  color: "#d4832f"

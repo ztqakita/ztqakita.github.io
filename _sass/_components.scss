@@ -90,6 +90,33 @@ ul.task-list input[type="checkbox"] {
   }
 }
 
+.education-list {
+  margin-top: 0.75rem;
+  margin-bottom: 2rem;
+
+  table {
+    margin-bottom: 0;
+  }
+
+  tr + tr {
+    border-top: 0.85rem solid transparent;
+  }
+
+  th {
+    width: 20%;
+    min-width: 7rem;
+    color: var(--global-text-color-light);
+    font-weight: 500;
+    white-space: nowrap;
+    padding-top: 0.35rem;
+  }
+
+  td {
+    line-height: 1.65;
+    padding-bottom: 0.65rem;
+  }
+}
+
 // CV
 
 .cv {

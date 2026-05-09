@@ -35,9 +35,30 @@ My current research interests are:
 - **Self-supervised Reinforcement Learning**: goal-conditioned RL, skill learning, zero-shot generalization.
 - **Whole-brain Simulation**: connectome-constrained models, sensorimotor closed-loop training.
 
+My long-term academic goal is to learn a general embodied agent from vision and self-motion. I see world models as a language-independent way to learn general representations from continuous perceptual signals. I am also exploring whether bottom-up hierarchical abstraction from pure vision sequences can lead to compact, compositional, and transferable abstract structures.
+
+
 ## Education
 
-- **Peking University**, Ph.D. in Integrated Life Sciences (Physics), 2022--2027 (expected). Advised by Prof. [Si Wu](https://www.psy.pku.edu.cn/szdw/qzjy/jsyjy/ws/index.htm).
-- **Beijing University of Posts and Telecommunications**, B.Eng. in Computer Science and Technology, 2018--2022.
-
-My long-term academic goal is to learn a general embodied agent from vision and self-motion. I see world models as a language-independent way to learn general representations from continuous perceptual signals. I am also exploring whether bottom-up hierarchical abstraction from pure vision sequences can lead to compact, compositional, and transferable abstract structures.
+<div class="news education-list">
+  <div class="table-responsive">
+    <table class="table table-sm table-borderless">
+      <tr>
+        <th scope="row">2022--2027</th>
+        <td>
+          <span class="news-title">Peking University</span>
+          <br>
+          Ph.D. in Integrated Life Sciences (Physics), expected 2027. Advised by Prof. <a href="https://www.psy.pku.edu.cn/szdw/qzjy/jsyjy/ws/index.htm">Si Wu</a>.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">2018--2022</th>
+        <td>
+          <span class="news-title">Beijing University of Posts and Telecommunications</span>
+          <br>
+          B.S. in Computer Science and Technology.
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
