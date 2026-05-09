@@ -1,13 +1,3 @@
-"AJP":
-  url: https://aapt.scitation.org/journal/ajp
-  color: "#00369f"
-
-"PhysRev":
-  url: https://journals.aps.org/
-
-"Vision":
-  color: "#009f36"
-
 "ICML":
   url: https://icml.cc/
   color: "#3b6fb6"
@@ -18,7 +8,7 @@
 
 "ICML Workshop":
   url: https://icml.cc/virtual/
-  color: "#2f8f83"
+  color: "#3b6fb6"
 
 "eLife":
   url: https://elifesciences.org/

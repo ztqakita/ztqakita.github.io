@@ -44,11 +44,11 @@ My long-term academic goal is to learn a general embodied agent from vision and 
   <div class="table-responsive">
     <table class="table table-sm table-borderless">
       <tr>
-        <th scope="row">2022--2027</th>
+        <th scope="row">2022--2027(expected)</th>
         <td>
           <span class="news-title">Peking University</span>
           <br>
-          Ph.D. in Integrated Life Sciences (Physics), expected 2027. Advised by Prof. <a href="https://www.psy.pku.edu.cn/szdw/qzjy/jsyjy/ws/index.htm">Si Wu</a>.
+          Ph.D. in Integrated Life Sciences (Physics). Advised by Prof. <a href="https://www.psy.pku.edu.cn/szdw/qzjy/jsyjy/ws/index.htm">Si Wu</a>.
         </td>
       </tr>
       <tr>
