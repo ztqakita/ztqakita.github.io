@@ -35,7 +35,7 @@ My current research interests are:
 - **Self-supervised Reinforcement Learning**: goal-conditioned RL, skill learning, zero-shot generalization.
 - **Whole-brain Simulation**: connectome-constrained models, sensorimotor closed-loop training.
 
-My long-term academic goal is to learn a general embodied agent from vision and self-motion. I see world models as a language-independent way to learn general representations from continuous perceptual signals. I am also exploring whether bottom-up hierarchical abstraction from pure vision sequences can lead to compact, compositional, and transferable abstract structures.
+My long-term academic goal is to build a general embodied agent from vision and self-motion. I see world models as a language-independent way to learn general representations from continuous perceptual signals. I am also exploring whether bottom-up hierarchical abstraction from pure vision sequences can lead to compact, compositional, and transferable abstract concept.
 
 
 ## Education

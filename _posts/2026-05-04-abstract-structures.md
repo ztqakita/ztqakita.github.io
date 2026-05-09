@@ -1,10 +1,10 @@
 ---
 layout: post
-title: World Models Are Not Only About Predicting the Future: From Cognitive Maps to Abstract Structure
+title: "World Models Are Not Only About Predicting the Future: From Cognitive Maps to Abstract Structure"
 date: 2026-05-04 14:24:00
 description: Learning the reusable structures hidden behind continuous experience
-tags: world models
-categories: 
+tags: [world-models]
+categories: [research]
 chart:
   plotly: true
 ---
@@ -341,5 +341,3 @@ This may be one of the most important directions for future world model research
 [8] Ye, S., Jang, J., Jeon, B., Joo, S., Yang, J., Peng, B., Mandlekar, A., Tan, R., Chao, Y.-W., Lin, B. Y., et al. Latent action pretraining from videos. arXiv preprint arXiv:2410.11758, 2024.
 
 [9] Gao, S., Zhou, S., Du, Y., Zhang, J., and Gan, C. AdaWorld: Learning Adaptable World Models with Latent Actions. In *Forty-second International Conference on Machine Learning*.
-
-
