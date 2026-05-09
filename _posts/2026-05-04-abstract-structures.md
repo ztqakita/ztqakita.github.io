@@ -19,7 +19,7 @@ toc:
       - name: Structure Abstraction
       - name: Structural Generalization
       - name: Ablation Studies
-  - name: DiLA
+  - name: "DiLA: Disentangled Latent Action World Models"
     subsections:
       - name: Core Idea
       - name: Model Architecture
@@ -90,7 +90,7 @@ In AI, world models can be broadly divided into several categories:
 2. **video generation**, whose goal is to generate visually continuous and realistic future frames;
 3. **action-conditioned forward dynamics models**, whose goal is to learn how states change under actions, thereby supporting control and planning.
 
-Our focus is a special form of the third category: **latent world models**, in the spirit of JEPA <d-cite key="lecun2022path"></d-cite> and the Dreamer series <d-cite key="hafner2020dream"></d-cite>. Latent world models do not directly predict the future in pixel space. Instead, they first encode an observation $o_t$ into a latent state $$ s_t = E(o_t) $$, and then learn transition dynamics in latent space: $$ p(s_{t+1} | s_t, a_t) $$. This paradigm rests on a key assumption: although raw observations in the real world are high-dimensional and complex, the main regularities governing change often lie on a lower-dimensional and more structured manifold. In other words, images may contain abundant texture, color, background, and noise, but the dynamical variables that drive image changes are usually simpler. This is the advantage of latent world models: they do not need to process every pixel-level detail, but instead predict future states in a more abstract latent space.
+Our focus is a special form of the third category: **latent world models**, in the spirit of JEPA <d-cite key="lecun2022path"></d-cite> and the Dreamer series <d-cite key="hafner2020dream"></d-cite>. Latent world models do not directly predict the future in pixel space. Instead, they first encode an observation $o_t$ into a latent state $$ s_t = E(o_t) $$, and then learn transition dynamics in latent space: $$ p(s_{t+1} \| s_t, a_t) $$. This paradigm rests on a key assumption: although raw observations in the real world are high-dimensional and complex, the main regularities governing change often lie on a lower-dimensional and more structured manifold. In other words, images may contain abundant texture, color, background, and noise, but the dynamical variables that drive image changes are usually simpler. This is the advantage of latent world models: they do not need to process every pixel-level detail, but instead predict future states in a more abstract latent space.
 
 <div class="l-page">
   {% include figure.liquid path="assets/img/blog/2026-05-04-abstract-structures/image-1.png" class="img-fluid rounded z-depth-1" zoomable=true caption="A world model maps the current state and an abstract action or transition signal to a predicted future state. The key question is whether the model learns reusable structure, rather than only memorizing visual appearance." %}
@@ -175,7 +175,7 @@ This work shifts the focus of world models from “predicting the next frame” 
 
 ---
 
-## DiLA
+## DiLA: Disentangled Latent Action World Models
 
 In AI, world models have largely relied on datasets with action labels. Compared with massive and easily accessible unlabeled video data, action-labeled data are scarce and costly to scale. To bridge this gap, Latent Action Models (LAMs) <d-cite key="schmidt2024learning"></d-cite> have been proposed. Their core motivation is to combine action representation learning with predictive learning, thereby learning an implicit action representation from videos without action labels. A typical LAM contains two components:
 
