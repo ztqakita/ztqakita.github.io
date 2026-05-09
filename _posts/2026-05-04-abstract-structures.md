@@ -1,17 +1,45 @@
 ---
-layout: post
+layout: distill
 title: "World Models Are Not Only About Predicting the Future: From Cognitive Maps to Abstract Structure"
 date: 2026-05-04 14:24:00
 description: Learning the reusable structures hidden behind continuous experience
 tags: [world-models]
 categories: [research]
-chart:
-  plotly: true
+authors:
+  - name: Tianqiu Zhang
+    affiliations:
+      name: Peking University
+bibliography: 2026-05-04-abstract-structures.bib
+toc:
+  - name: Introduction
+  - name: Abstract Structure
+  - name: The HPC-MEC World Model
+    subsections:
+      - name: Model Design
+      - name: Structure Abstraction
+      - name: Structural Generalization
+      - name: Ablation Studies
+  - name: DiLA
+    subsections:
+      - name: Core Idea
+      - name: Model Architecture
+      - name: Motion Transfer
+      - name: Disentanglement
+      - name: The Latent Action Manifold
+  - name: From World Models to Abstraction and General Intelligence
+_styles: >
+  .distill .l-page figure {
+    margin: 1.5rem 0 0.25rem;
+  }
+  .distill .l-page figcaption {
+    max-width: 900px;
+    margin: 0.5rem auto 1.5rem;
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
 ---
 
-# World Models Are Not Only About Predicting the Future: From Cognitive Maps to Abstract Structure
-
-## Introduction: From Predictive World Models to Structured World Models
+## Introduction
 
 In recent years, world models have become a central concept in embodied intelligence and self-supervised video generation. Broadly speaking, a world model aims to learn how an environment evolves over time: given a current state and some action or change signal, the model predicts what will happen next. In many discussions, world models are often understood as models that “predict future images.” For example, given the first few frames of a video, the model generates subsequent frames; given a current observation and an action, it predicts the next state. This is certainly an important function of world models. Yet if world models are reduced to video prediction or image generation, a deeper issue is easily missed. The real value of a world model does not lie merely in generating what the next frame looks like, but in learning the **reusable structures** hidden behind continuous experience.
 
@@ -30,7 +58,7 @@ Together, these two works support the following view: the key to world models is
 
 ---
 
-## Abstract Structure: A Compressed Representation of Coupled Space-Time Regularities
+## Abstract Structure
 
 We first need to clarify what is meant by abstract structure. A simple example is useful. Imagine a person arriving in an unfamiliar city for the first time. Initially, they only see local streets, buildings, intersections, and landmarks. Each momentary visual input is local and incomplete. As they continue walking and exploring, however, they gradually learn which buildings are adjacent, which road leads to the square, and which turn brings them back to a previously encountered location. This process is not simply the memorization of every visual frame. What the brain constructs is an internal spatial structure: relations among current location, orientation, distance, routes, and landmarks. This structure can be understood as a two-dimensional cognitive map. More importantly, it is reusable. When the same person enters another city, they do not need to relearn basic structural relations such as “left and right,” “forward and backward,” “turning,” or “near and far.” New visual content can be bound to an already familiar spatial structure, allowing the person to understand the new environment quickly. This suggests that many forms of human generalization arise not from memorizing particular scenes, but from learning and reusing abstract structures.
 
@@ -43,9 +71,9 @@ Two-dimensional spatial navigation is only the most intuitive example. More gene
 
 What these structures share is that they do not depend on the color, texture, identity, or background of a specific object. Rotation is not a property unique to a particular apple; grasping is not an action unique to a particular hand. Structure describes **how states change**, rather than how states look. Abstract structure can therefore be understood as a compressed representation of spatiotemporal regularities. It is not a static image feature, but a pattern of change extracted from continuous sequences.
 
-In computational neuroscience, cognitive map theory [1, 2] has long been used to explain how animals and humans perform spatial navigation. One of its most important neural substrates is the hippocampal-entorhinal circuit (HPC-MEC). Traditionally, the hippocampus has been closely associated with spatial and episodic memory, whereas grid cells in the entorhinal cortex provide a periodic and structured spatial code. Later studies further showed that this form of structured coding is not limited to two-dimensional physical space. The HPC-MEC circuit may also participate in the representation of more general abstract conceptual spaces, such as relational reasoning, conceptual transfer, and structural generalization.
+In computational neuroscience, cognitive map theory <d-cite key="hafting2005microstructure,okeefe1978hippocampus"></d-cite> has long been used to explain how animals and humans perform spatial navigation. One of its most important neural substrates is the hippocampal-entorhinal circuit (HPC-MEC). Traditionally, the hippocampus has been closely associated with spatial and episodic memory, whereas grid cells in the entorhinal cortex provide a periodic and structured spatial code. Later studies further showed that this form of structured coding is not limited to two-dimensional physical space. The HPC-MEC circuit may also participate in the representation of more general abstract conceptual spaces, such as relational reasoning, conceptual transfer, and structural generalization.
 
-Within this framework, classical cognitive map models such as TEM [3] and VectorHaSH [4] propose a functional distinction between HPC and MEC:
+Within this framework, classical cognitive map models such as TEM <d-cite key="whittington2020tolman"></d-cite> and VectorHaSH <d-cite key="chandra2025episodic"></d-cite> propose a functional distinction between HPC and MEC:
 
 - **HPC binds content and structure**: it binds concrete episodes, visual details, contextual information, and individual experiences;
 - **MEC encodes abstract structure**: it represents more abstract, regular, and reusable relational structures, especially those related to path integration, positional change, and continuous transitions.
@@ -62,23 +90,17 @@ In AI, world models can be broadly divided into several categories:
 2. **video generation**, whose goal is to generate visually continuous and realistic future frames;
 3. **action-conditioned forward dynamics models**, whose goal is to learn how states change under actions, thereby supporting control and planning.
 
-Our focus is a special form of the third category: **latent world models**, in the spirit of JEPA [5] and the Dreamer series [6]. Latent world models do not directly predict the future in pixel space. Instead, they first encode an observation $o_t$ into a latent state $s_t = E(o_t)$, and then learn transition dynamics in latent space: $p(s_{t+1} | s_t, a_t)$. This paradigm rests on a key assumption: although raw observations in the real world are high-dimensional and complex, the main regularities governing change often lie on a lower-dimensional and more structured manifold. In other words, images may contain abundant texture, color, background, and noise, but the dynamical variables that drive image changes are usually simpler. This is the advantage of latent world models: they do not need to process every pixel-level detail, but instead predict future states in a more abstract latent space.
+Our focus is a special form of the third category: **latent world models**, in the spirit of JEPA <d-cite key="lecun2022path"></d-cite> and the Dreamer series <d-cite key="hafner2020dream"></d-cite>. Latent world models do not directly predict the future in pixel space. Instead, they first encode an observation $o_t$ into a latent state $s_t = E(o_t)$, and then learn transition dynamics in latent space: $p(s_{t+1} | s_t, a_t)$. This paradigm rests on a key assumption: although raw observations in the real world are high-dimensional and complex, the main regularities governing change often lie on a lower-dimensional and more structured manifold. In other words, images may contain abundant texture, color, background, and noise, but the dynamical variables that drive image changes are usually simpler. This is the advantage of latent world models: they do not need to process every pixel-level detail, but instead predict future states in a more abstract latent space.
 
-<div class="row mt-3">
-    <div class="col-sm-12 mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/blog/2026-05-04-abstract-structures/image-1.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
-</div>
-<div class="caption">
-    A world model maps the current state and an abstract action or transition signal to a predicted future state. The key question is whether the model learns reusable structure, rather than only memorizing visual appearance.
+<div class="l-page">
+  {% include figure.liquid loading="eager" path="assets/img/blog/2026-05-04-abstract-structures/image-1.png" class="img-fluid rounded z-depth-1" zoomable=true caption="A world model maps the current state and an abstract action or transition signal to a predicted future state. The key question is whether the model learns reusable structure, rather than only memorizing visual appearance." %}
 </div>
 
 However, latent world models also face an important problem: the latent space often has to serve two roles at once. On one hand, it must be sufficiently abstract to support transition learning. On the other hand, it must preserve enough content information to generate the next frame. In other words, latent world models do not explicitly learn an abstract structure that is independent of scene information, because the latent dynamics they learn remain entangled with substantial content information. Once the model is transferred to new objects or new backgrounds, the learned transition regularities may become difficult to reuse.
 
 ---
 
-## The HPC-MEC World Model: Learning Abstract Structure through Hierarchy When Actions Are Unknown
-{% cite zhang2026structure %}
+## The HPC-MEC World Model
 
 The functional distinction suggested by the HPC-MEC circuit provides a useful direction: a hierarchical world model can separate content-rich representations from structural representations. However, both cognitive map models and latent world models typically assume that the action $a_t$ is known. Robot datasets contain control commands; game environments provide discrete key presses; navigation tasks provide velocity and direction. Yet if the goal is to learn abstract structure, this assumption introduces a **hidden trap**: once the action space is predefined, the internal structure has already been partially fixed.
 
@@ -90,23 +112,18 @@ For example:
 
 In these cases, the model is not spontaneously learning abstract structure from observations; rather, it is learning latent state transitions on top of already specified action semantics. When structure learning depends on the definition of the action space itself, misalignment across different action spaces can hinder structural generalization. Put differently, learning abstract structure is deeply coupled with learning the action space. If the action space is manually specified, then what is called “structure learning” may already be partly determined by the action definition.
 
-The work **Structure Abstraction and Generalization in a Hippocampus-Entorhinal Inspired World Model** addresses exactly this problem:
+The work **Structure Abstraction and Generalization in a Hippocampus-Entorhinal Inspired World Model** <d-cite key="zhang2026structure"></d-cite> addresses exactly this problem:
 
 > How can a world model simultaneously learn concrete visual content and abstract dynamic structure from videos without action labels, and transfer the learned structure to new objects and environments?
 
 The paper proposes a hierarchical world model inspired by the hippocampal-entorhinal circuit. It extracts reusable latent transitions from continuous visual experience and uses path integration to support future prediction and structural generalization.
 
-### Model Design: HPC Preserves Content, MEC Abstracts Structure
+### Model Design
 
 The model consists of two main components: an **HPC-MEC coupling model** and an **inverse dynamics model (IDM)**. It first uses a pretrained multi-scale VQ-VAE to extract visual representations, then obtains HPC and MEC representations through a hierarchical architecture. The IDM infers latent transitions from differences between consecutive MEC representations.
 
-<div class="row mt-3">
-    <div class="col-sm-12 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/blog/2026-05-04-abstract-structures/image-2.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
-</div>
-<div class="caption">
-    Figure 1 | Overview of the HPC-MEC world model. Visual observations are encoded into content-rich HPC embeddings and lower-dimensional MEC embeddings. An inverse model infers latent transitions from consecutive MEC states, while the forward model uses these transitions for path-integration-style prediction.
+<div class="l-page">
+  {% include figure.liquid path="assets/img/blog/2026-05-04-abstract-structures/image-2.png" class="img-fluid rounded z-depth-1" zoomable=true caption="Figure 1 | Overview of the HPC-MEC world model. Visual observations are encoded into content-rich HPC embeddings and lower-dimensional MEC embeddings. An inverse model infers latent transitions from consecutive MEC states, while the forward model uses these transitions for path-integration-style prediction." %}
 </div>
 
 The key design is not simply to construct an encoder-decoder, but to create two functionally distinct information flows.
@@ -119,52 +136,37 @@ The model does not directly predict the next frame. Instead, it uses a latent tr
 
 The core mechanism of the MEC is based on a Continuous Attractor Neural Network (CANN). In neuroscience, CANNs are often used to explain how grid cells maintain a stable activity bump in continuous space and perform path integration driven by velocity inputs. This idea is introduced into the design of the MEC: the MEC representation denotes the current state of the abstract structure, while the latent transition acts as a velocity-like input that drives structural change. A forward function maps the current MEC state and the latent transition into a phase displacement, which then shifts the MEC state to obtain the structural state at the next time step.
 
-<div class="row mt-3">
-    <div class="col-sm-12 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/blog/2026-05-04-abstract-structures/image-3.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
-</div>
-<div class="caption">
-    Figure 2 | Detailed architecture of the HPC-MEC coupling model. The inference flow maps observations into HPC and MEC states, temporal recurrence carries structure forward, and the generation flow reconstructs future representations. The CANN modules implement phase shifts in MEC latent space.
+<div class="l-page">
+  {% include figure.liquid path="assets/img/blog/2026-05-04-abstract-structures/image-3.png" class="img-fluid rounded z-depth-1" zoomable=true caption="Figure 2 | Detailed architecture of the HPC-MEC coupling model. The inference flow maps observations into HPC and MEC states, temporal recurrence carries structure forward, and the generation flow reconstructs future representations. The CANN modules implement phase shifts in MEC latent space." %}
 </div>
 
-### Structure Abstraction: Has the Model Really Learned “Rotation”?
+### Structure Abstraction
 
 To test whether the model has learned abstract structure, the HPC-MEC World Model is trained on the large-scale human activity dataset Something-Something V2 without action labels, and then evaluated on unseen 3D object rotation data. Rotation is an especially suitable task for studying structural abstraction because it has clear periodicity: some objects return to their original appearance only after a full 360-degree rotation, while symmetric objects may exhibit repeated appearances after 180 or 90 degrees.
 
 The results show that both HPC and MEC representation spaces exhibit periodic trajectories, but the MEC representations form clearer shared rotational structures. Furthermore, within object categories, such as different pumpkins, red apples, and yellow apples, HPC representations more readily distinguish individual instances, whereas MEC representations tend to overlap and capture category-level shared rotational structures.
 
-<div class="row mt-3">
-    <div class="col-sm-12 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/blog/2026-05-04-abstract-structures/image-11.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
-</div>
-<div class="caption">
-    Figure 3 | Structural abstraction analysis of HPC and MEC representations. UMAP trajectories show that HPC embeddings preserve more instance-specific visual information, whereas MEC embeddings better align periodic rotational structure across objects and categories.
+<div class="l-page">
+  {% include figure.liquid path="assets/img/blog/2026-05-04-abstract-structures/image-11.png" class="img-fluid rounded z-depth-1" zoomable=true caption="Figure 3 | Structural abstraction analysis of HPC and MEC representations. UMAP trajectories show that HPC embeddings preserve more instance-specific visual information, whereas MEC embeddings better align periodic rotational structure across objects and categories." %}
 </div>
 
 This suggests that the model is not merely memorizing the rotation video of a particular object, but forming a more abstract structural trajectory in representation space.
 
-### Structural Generalization: Transferring Change from One Scene to Another
+### Structural Generalization
 
 Another way to test structural abstraction is to evaluate generalization. The model extracts a latent transition from one video and applies it to the initial state of another object or scene. If the latent transition truly represents an abstract structural change, it should be transferable. For example, a rotational structure extracted from one object should be applicable to another object, causing the target object to rotate in a similar manner.
 
 More broadly, the model is trained on real human activity videos such as Something-Something V2 and evaluated on multiple simulated object and robot manipulation scenarios for structural reuse and out-of-distribution generalization. This indicates that even without action labels, a world model can abstract transferable latent transitions from continuous visual experience.
 
-<div class="row mt-3">
-    <div class="col-sm-12 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/blog/2026-05-04-abstract-structures/image-4.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
-</div>
-<div class="caption">
-    Figure 4 | Structural generalization through latent-transition transfer. Latent actions extracted from source videos are applied to new target objects or scenes, producing sequences that preserve target visual content while reusing the source dynamics.
+<div class="l-page">
+  {% include figure.liquid path="assets/img/blog/2026-05-04-abstract-structures/image-4.png" class="img-fluid rounded z-depth-1" zoomable=true caption="Figure 4 | Structural generalization through latent-transition transfer. Latent actions extracted from source videos are applied to new target objects or scenes, producing sequences that preserve target visual content while reusing the source dynamics." %}
 </div>
 
 This is the meaning of structural abstraction:
 
 > What is learned is not how a particular image changes, but how a class of changes occurs.
 
-### Ablation Studies: Why Are Hierarchical Separation and CANN Both Important?
+### Ablation Studies
 
 To verify the necessity of the model design, the paper compares several ablated variants:
 
@@ -177,10 +179,9 @@ This work shifts the focus of world models from “predicting the next frame” 
 
 ---
 
-## DiLA: Co-Evolving Latent Action Learning and Disentanglement
-{% cite zhang2026dila %}
+## DiLA
 
-In AI, world models have largely relied on datasets with action labels. Compared with massive and easily accessible unlabeled video data, action-labeled data are scarce and costly to scale. To bridge this gap, Latent Action Models (LAMs) [7] have been proposed. Their core motivation is to combine action representation learning with predictive learning, thereby learning an implicit action representation from videos without action labels. A typical LAM contains two components:
+In AI, world models have largely relied on datasets with action labels. Compared with massive and easily accessible unlabeled video data, action-labeled data are scarce and costly to scale. To bridge this gap, Latent Action Models (LAMs) <d-cite key="schmidt2024learning"></d-cite> have been proposed. Their core motivation is to combine action representation learning with predictive learning, thereby learning an implicit action representation from videos without action labels. A typical LAM contains two components:
 
 1. **Inverse Dynamics Model (IDM)**
    It infers a latent action $z_t$ from consecutive states $s_t, s_{t+1}$, and uses an information bottleneck to encourage $z_t$ to encode motion information.
@@ -189,40 +190,30 @@ In AI, world models have largely relied on datasets with action labels. Compared
 
 In this way, the model no longer needs externally provided action labels. Instead, it self-supervisedly learns “what change caused the next state” from observation sequences. From the perspective of structure learning, latent actions can be understood as abstract latent transition representations. They do not describe the image content itself, but the way one state changes into the next. In other words, **latent actions are a computational expression of abstract structure in world models**.
 
-<div class="row mt-3">
-    <div class="col-sm-12 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/blog/2026-05-04-abstract-structures/image-5.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
-</div>
-<div class="caption">
-    Latent action learning extracts an implicit transition representation from consecutive observations. Instead of relying on externally provided action labels, the model learns a latent action that explains how one state changes into the next.
+<div class="l-page">
+  {% include figure.liquid path="assets/img/blog/2026-05-04-abstract-structures/image-5.png" class="img-fluid rounded z-depth-1" zoomable=true caption="Latent action learning extracts an implicit transition representation from consecutive observations. Instead of relying on externally provided action labels, the model learns a latent action that explains how one state changes into the next." %}
 </div>
 
 This makes LAMs an attractive framework for learning abstract structure. A large amount of real-world video data has no action labels: internet videos, human activity videos, first-person navigation videos, and cross-embodiment interaction videos usually provide only continuous observation sequences. These data contain rich internal structure, and LAMs provide a self-supervised route for extracting such structure from videos.
 
 However, LAM training faces a central tension. If the latent action is compressed enough to become abstract, it becomes easier to transfer, but may lose the accuracy needed to predict the next state and the details required for generation. If the latent action retains enough information to improve generation quality, it can easily mix in content information such as color, texture, and background, making the action less abstract and harder to transfer. We call this problem the **LAM Trade-off**: the tension between action abstraction and prediction accuracy.
 
-Most existing methods impose strong predictive bottlenecks to make action representations transferable and abstract, such as Vector Quantization (VQ) [8] or variational bottlenecks [9]. Although these priors can promote abstraction, they often disrupt the intrinsic manifold structure of the latent action space, resulting in over-simplified representations and degraded video generation fidelity.
+Most existing methods impose strong predictive bottlenecks to make action representations transferable and abstract, such as Vector Quantization (VQ) <d-cite key="ye2024latent"></d-cite> or variational bottlenecks <d-cite key="gao2025adaworld"></d-cite>. Although these priors can promote abstraction, they often disrupt the intrinsic manifold structure of the latent action space, resulting in over-simplified representations and degraded video generation fidelity.
 
-### Core Idea: Latent Action Learning and Disentanglement Co-Evolve
+### Core Idea
 
-The work **DiLA: Disentangled Latent Action World Models** argues that the key to resolving the LAM Trade-off is **disentanglement**. Specifically, DiLA separates video representations into two pathways:
+The work **DiLA: Disentangled Latent Action World Models** <d-cite key="zhang2026dila"></d-cite> argues that the key to resolving the LAM Trade-off is **disentanglement**. Specifically, DiLA separates video representations into two pathways:
 
 1. The **structure pathway** models motion-related spatial structure, such as position, shape, layout, and dynamic change. The latent action only needs to predict changes in the structure representation, rather than the full visual feature.
 2. The **content pathway** preserves visual details, such as color, texture, background, object appearance, and historical information.
 
-<div class="row mt-3">
-    <div class="col-sm-12 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/blog/2026-05-04-abstract-structures/image-6.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
-</div>
-<div class="caption">
-    Figure 1 | Schematic illustration of DiLA. Latent action learning and content-structure disentanglement co-evolve: the predictive bottleneck drives more abstract motion representations, while the content pathway separates slow visual features such as color, texture, and landmarks.
+<div class="l-page">
+  {% include figure.liquid path="assets/img/blog/2026-05-04-abstract-structures/image-6.png" class="img-fluid rounded z-depth-1 mx-auto d-block" max-width="520px" zoomable=true caption="Figure 1 | Schematic illustration of DiLA. Latent action learning and content-structure disentanglement co-evolve: the predictive bottleneck drives more abstract motion representations, while the content pathway separates slow visual features such as color, texture, and landmarks." %}
 </div>
 
 DiLA does not learn latent actions from full visual representations. Instead, it forces latent actions to predict only the evolution of structure representations. In this way, latent actions are compelled to focus on structural change, while high-entropy visual details are moved to the content pathway. This further promotes disentanglement: to minimize structure prediction error, the model is encouraged to encode dynamics-related motion information into the latent action while transferring static visual details to an independent content pathway. At the same time, the predictive information bottleneck required for learning latent actions acts as the driving force that retains only dynamics-related features in the structure pathway and separates appearance-related features that do not change over time. Thus, disentanglement emerges during the process of latent action learning. In turn, better content-structure disentanglement makes it easier for the LAM to learn an abstract, continuous, and transferable latent action space. The two processes form a co-evolving relationship.
 
-### Model Architecture: Structure Pathway + Content Pathway + Fusion Reconstruction
+### Model Architecture
 
 The overall architecture of DiLA can be summarized in three parts.
 
@@ -231,13 +222,8 @@ First, input videos are processed by a DINOv2 encoder and a Spatial-Temporal Tra
 1. In the **structure pathway**, the model first compresses the representation into a structure embedding. The IDM then infers latent actions from differences between consecutive structure embeddings. The FDM predicts the next structure embedding from the current structure embedding and the latent action. This process makes the latent action primarily encode “how structure changes,” rather than how the full image changes.
 2. In the **content pathway**, the model uses Mamba as a memory module to aggregate historical content information. This design is analogous to slow feature analysis: it focuses on relatively stable visual content rather than rapidly changing dynamic structure.
 
-<div class="row mt-3">
-    <div class="col-sm-12 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/blog/2026-05-04-abstract-structures/image-7.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
-</div>
-<div class="caption">
-    Figure 2 | Overall architecture of DiLA. DINOv2 and a spatial-temporal transformer produce visual embeddings, which are separated into a structure pathway for latent action dynamics and a content pathway with memory. A fusion decoder combines predicted structure with remembered content for future reconstruction.
+<div class="l-page">
+  {% include figure.liquid path="assets/img/blog/2026-05-04-abstract-structures/image-7.png" class="img-fluid rounded z-depth-1" zoomable=true caption="Figure 2 | Overall architecture of DiLA. DINOv2 and a spatial-temporal transformer produce visual embeddings, which are separated into a structure pathway for latent action dynamics and a content pathway with memory. A fusion decoder combines predicted structure with remembered content for future reconstruction." %}
 </div>
 
 Finally, the **Fusion Decoder** combines the predicted structure representation, the content memory representation, and initial-frame information to reconstruct the future visual embedding. That is, DiLA completes future prediction through:
@@ -247,49 +233,34 @@ Finally, the **Fusion Decoder** combines the predicted structure representation,
 
 A particularly noteworthy design is a latent action regularization loss inspired by the perspective of Lie groups. It uses a cosine similarity objective to enforce that temporally reversed transitions produce opposite latent action vectors. This geometric constraint aligns the latent space with meaningful motion dynamics while suppressing random and irrelevant distractors.
 
-### Motion Transfer: Testing Whether Latent Actions Are Truly Abstract
+### Motion Transfer
 
 One of the most important experiments in DiLA is action transfer. The model extracts latent actions from a source video and applies them to another target scene. If the latent actions have truly learned abstract action semantics, the generated result should preserve the content of the target scene while reusing the dynamics of the source video. The paper presents multiple transfer scenarios, including human-to-robot action transfer, semantic action transfer across different objects and viewpoints, human-to-human and robot-to-robot intra-domain transfer, and cross-scene transfer between simulated and real navigation environments. These results show that the latent actions learned by DiLA are not merely pixel differences or local optical flow, but dynamic representations with a degree of reusability across objects, embodiments, and environments.
 
-<div class="row mt-3">
-    <div class="col-sm-12 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/blog/2026-05-04-abstract-structures/image-8.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
-</div>
-<div class="caption">
-    Figure 3 | Latent action transfer results. DiLA transfers motion patterns across manipulation, navigation, human, and robot scenarios, showing that the learned latent actions capture reusable dynamics rather than scene-specific pixel changes.
+<div class="l-page">
+  {% include figure.liquid path="assets/img/blog/2026-05-04-abstract-structures/image-8.png" class="img-fluid rounded z-depth-1" zoomable=true caption="Figure 3 | Latent action transfer results. DiLA transfers motion patterns across manipulation, navigation, human, and robot scenarios, showing that the learned latent actions capture reusable dynamics rather than scene-specific pixel changes." %}
 </div>
 
-### Disentanglement: Are Structure and Content Really Separated?
+### Disentanglement
 
 To verify whether structure and content are genuinely separated, the paper designs a rebinding experiment. Specifically, structure is extracted from one video and content from another video, and the two are recombined to generate a new sequence. The results show that the generated sequence inherits the spatial dynamics of the structure sequence while preserving the colors, textures, and appearance attributes of the content sequence.
 
 The paper also conducts a control experiment: the structure representation is fixed, while only the memory module in the content pathway evolves over time. If the content pathway leaked motion information, the generated result should still move. However, the generated sequence remains static. This shows that the content memory module mainly encodes temporally stable content information rather than motion itself.
 
-<div class="row mt-3">
-    <div class="col-sm-12 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/blog/2026-05-04-abstract-structures/image-9.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
-</div>
-<div class="caption">
-    Figure 4 | Verification of content-structure disentanglement. Rebinding experiments combine structure from one sequence with content from another, while the fixed-structure control shows that the content memory mainly stores stable appearance information rather than motion.
+<div class="l-page">
+  {% include figure.liquid path="assets/img/blog/2026-05-04-abstract-structures/image-9.png" class="img-fluid rounded z-depth-1" zoomable=true caption="Figure 4 | Verification of content-structure disentanglement. Rebinding experiments combine structure from one sequence with content from another, while the fixed-structure control shows that the content memory mainly stores stable appearance information rather than motion." %}
 </div>
 
 This experiment is crucial because it directly supports the core claim of DiLA:
 
 > Latent action learning promotes structure-content separation through a predictive information bottleneck, and structure-content separation further improves the abstraction of latent actions.
 
-### The Latent Action Manifold: Does the Abstract Action Space Have Structure?
+### The Latent Action Manifold
 
 DiLA not only studies generation and transfer, but also analyzes the geometry of the latent action space. The paper constructs a controlled out-of-distribution benchmark using OmniObject3D, including primitive transformations such as translation, scaling, and rotation. UMAP visualizations show that different transformation types form continuous and interpretable manifolds in the latent action space. For example, translation forms a structure similar to a two-dimensional plane; scaling exhibits symmetry around the identity transformation; and rotation forms a continuous spectrum of rotation magnitudes. This indicates that the latent actions learned by DiLA are not discrete tokens, but action manifolds with continuous semantic structure. The paper further shows compositional actions, such as translation plus scaling, suggesting that the latent action space has a degree of compositionality.
 
-<div class="row mt-3">
-    <div class="col-sm-12 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/blog/2026-05-04-abstract-structures/image-10.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
-</div>
-<div class="caption">
-    Figure 5 | Interpretability analysis of the latent action space. UMAP and decoding results show that translation, scaling, rotation, navigation, and compositional actions form continuous and meaningful manifolds in the learned latent action representation.
+<div class="l-page">
+  {% include figure.liquid path="assets/img/blog/2026-05-04-abstract-structures/image-10.png" class="img-fluid rounded z-depth-1" zoomable=true caption="Figure 5 | Interpretability analysis of the latent action space. UMAP and decoding results show that translation, scaling, rotation, navigation, and compositional actions form continuous and meaningful manifolds in the learned latent action representation." %}
 </div>
 
 In addition, the paper compares DiLA with methods such as LAPA, Moto, AdaWorld, and villa-X on generation, transfer, and action planning tasks, and validates the necessity of each module through ablation studies.
@@ -319,25 +290,3 @@ Goal-conditioned RL, in turn, can be regarded as an implicit world model. On the
 Therefore, when comparing LLMs with self-supervised RL, a key difference emerges: the data space of LLMs is primarily static, and the model can only learn within the existing text distribution; the data space of self-supervised RL is dynamic, because the agent can change its future data distribution through its own behavior. This means that self-supervised RL is not merely “training a model on data,” but “training a behavioral system capable of generating better data.” In this closed loop, the world model compresses and predicts experience, the policy explores and expands experience, and intrinsic objectives determine which experiences should be prioritized for learning.
 
 This may be one of the most important directions for future world model research. A world model should not be seen only as a module in model-based RL for fitting transition dynamics, nor only as a future-frame predictor in video generation. More broadly, it should become the core structure connecting observation, action, and goal. It learns the statistical regularities of the world from observations, the controllable structures of the world from actions, and the reachability relations among states from goal-conditioned behavior. Ultimately, it forms an abstract representation that can both understand the world and actively change it.
-
----
-
-## References
-
-[1] Hafting, T., Fyhn, M., Molden, S., Moser, M.-B., and Moser, E. I. Microstructure of a spatial map in the entorhinal cortex. *Nature*, 436(7052):801-806, 2005.
-
-[2] O'Keefe, J. and Nadel, L. *The Hippocampus as a Cognitive Map*. Clarendon Press, 1978.
-
-[3] Whittington, J. C., Muller, T. H., Mark, S., Chen, G., Barry, C., Burgess, N., and Behrens, T. E. The Tolman-Eichenbaum machine: unifying space and relational memory through generalization in the hippocampal formation. *Cell*, 183(5):1249-1263, 2020.
-
-[4] Chandra, S., Sharma, S., Chaudhuri, R., and Fiete, I. Episodic and associative memory from spatial scaffolds in the hippocampus. *Nature*, 638(8051):739-751, February 2025. doi: 10.1038/s41586-024-08392-y.
-
-[5] LeCun, Y. A path towards autonomous machine intelligence version 0.9.2, 2022-06-27. *Open Review*, 62(1):1-62, 2022.
-
-[6] Hafner, D., Lillicrap, T., Ba, J., and Norouzi, M. Dream to Control: Learning Behaviors by Latent Imagination. In *International Conference on Learning Representations*, 2020.
-
-[7] Schmidt, D. and Jiang, M. Learning to act without actions. In *The Twelfth International Conference on Learning Representations (ICLR)*, 2024.
-
-[8] Ye, S., Jang, J., Jeon, B., Joo, S., Yang, J., Peng, B., Mandlekar, A., Tan, R., Chao, Y.-W., Lin, B. Y., et al. Latent action pretraining from videos. arXiv preprint arXiv:2410.11758, 2024.
-
-[9] Gao, S., Zhou, S., Du, Y., Zhang, J., and Gan, C. AdaWorld: Learning Adaptable World Models with Latent Actions. In *Forty-second International Conference on Machine Learning*.
