@@ -37,15 +37,15 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-",
+        },{id: "post-world-models-are-not-only-about-predicting-the-future-from-cognitive-maps-to-abstract-structure",
         
-          title: "",
+          title: "World Models Are Not Only About Predicting the Future: From Cognitive Maps to...",
         
-        description: "",
+        description: "Learning the reusable structures hidden behind continuous experience",
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2026/2026-05-04-abstract-structures/";
+            window.location.href = "/blog/2026/abstract-structures/";
           
         },
       },{id: "books-the-godfather",
