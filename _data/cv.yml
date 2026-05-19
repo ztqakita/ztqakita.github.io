@@ -5,7 +5,7 @@ cv:
   location: Beijing, China
   website: https://ztqakita.github.io
   image: ""
-  summary: Ph.D. student at Peking University advised by Prof. Si Wu, working on latent world models, self-supervised reinforcement learning, and computational neuroscience.
+  summary: Ph.D. student at Peking University advised by Prof. Si Wu, working on latent world models, brain-inspired representation learning, self-supervised reinforcement learning, and computational neuroscience.
 
   social_networks:
     - network: GitHub
@@ -17,9 +17,10 @@ cv:
 
   sections:
     Research Interests:
-      - bullet: "Latent world models: brain-inspired world models, latent action models, structure learning."
-      - bullet: "Self-supervised reinforcement learning: goal-conditioned RL, skill learning, zero-shot generalization."
-      - bullet: "Computational neuroscience: connectome-constrained model simulation and training."
+      - bullet: "Latent World Models: brain-inspired world models, latent action models, structure learning."
+      - bullet: "Brain-inspired Representation Learning: phase coding, multi-scale coding, equivariant map."
+      - bullet: "Self-supervised Reinforcement Learning: goal-conditioned RL, skill learning, zero-shot generalization."
+      - bullet: "Computational Neuroscience: connectome-constrained model simulation and training."
 
     Education:
       - institution: Peking University
@@ -34,7 +35,7 @@ cv:
       - institution: Beijing University of Posts and Telecommunications
         location: Beijing, China
         area: Computer Science and Technology
-        studyType: B.Eng.
+        studyType: B.S.
         start_date: 2018-09
         end_date: 2022-07
         highlights:
@@ -136,7 +137,7 @@ cv:
 
     Highlighted Conferences and Summer Schools:
       - bullet: "NeuroFrontiers: Bridging Molecules, Minds, and AI Systems Symposium, Singapore, 2025. Poster presenter."
-      - bullet: "The 6th Chinese Computational and Cognitive Neuroscience Conference, Hong Kong, China, 2024. Best poster award for 'Elucidating Sensorimotor Mechanisms through Connectome-based Whole-brain Spiking Neural Network Modeling in Zebrafish'."
+      - bullet: "The 6th Chinese Computational and Cognitive Neuroscience Conference, Hong Kong, China, 2024. Best poster award. Poster title: Elucidating Sensorimotor Mechanisms through Connectome-based Whole-brain Spiking Neural Network Modeling in Zebrafish."
       - bullet: "The 16th, 17th, and 18th Annual Meeting of Chinese Neuroscience Society, China, 2023, 2024, 2025. Poster presenter."
       - bullet: "The Computational and Cognitive Neuroscience (CCN) Summer School, Cold Spring Harbor Asia, 2023. Selected participant."
       - bullet: "The Annual Meeting of Center of Quantitative Biology, Beijing, China, 2023. Invited speaker."
@@ -157,6 +158,7 @@ cv:
           - Brain-inspired world models
           - Latent action models
           - Structure learning
+          - Brain-inspired representation learning
           - Goal-conditioned reinforcement learning
           - Connectome-constrained modeling
 
