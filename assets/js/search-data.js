@@ -152,7 +152,7 @@ ninja.data = [{
         title: 'LinkedIn',
         section: 'Socials',
         handler: () => {
-          window.open("https://www.linkedin.com/in/tianqiu-zhang-7b410b409", "_blank");
+          window.open("https://www.linkedin.com/in/tianqiu-zhang-305775413", "_blank");
         },
       },{
         id: 'social-rss',
