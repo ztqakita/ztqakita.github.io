@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-06-12'
+  last_updated: '2026-07-08'
 papers:
   q-7tMTwAAAAJ:2osOgNQ5qMEC:
     citations: 2
@@ -18,7 +18,7 @@ papers:
     title: Structure Abstraction and Generalization in a Hippocampal-Entorhinal Inspired World Model
     year: '2026'
   q-7tMTwAAAAJ:u-x6o8ySG0sC:
-    citations: 63
+    citations: 67
     title: BrainPy, a flexible, integrative, efficient, and extensible framework for general-purpose brain dynamics programming
     year: '2023'
   q-7tMTwAAAAJ:u5HHmVD_uO8C:
