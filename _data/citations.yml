@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-07-31'
+  last_updated: '2026-08-10'
 papers:
   q-7tMTwAAAAJ:2osOgNQ5qMEC:
     citations: 2
@@ -10,7 +10,7 @@ papers:
     title: A differentiable brain simulator bridging brain simulation and brain-inspired computing
     year: '2024'
   q-7tMTwAAAAJ:UeHWp8X0CEIC:
-    citations: 1
+    citations: 2
     title: 'DiLA: Disentangled Latent Action World Models'
     year: '2026'
   q-7tMTwAAAAJ:qjMakFHDy7sC:
@@ -18,7 +18,7 @@ papers:
     title: Structure Abstraction and Generalization in a Hippocampal-Entorhinal Inspired World Model
     year: '2026'
   q-7tMTwAAAAJ:u-x6o8ySG0sC:
-    citations: 69
+    citations: 70
     title: BrainPy, a flexible, integrative, efficient, and extensible framework for general-purpose brain dynamics programming
     year: '2023'
   q-7tMTwAAAAJ:u5HHmVD_uO8C:
