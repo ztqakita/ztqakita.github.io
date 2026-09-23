@@ -27,7 +27,7 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-I am currently a fourth-year Ph.D. student at Peking University, advised by Prof. [Si Wu](https://www.psy.pku.edu.cn/szdw/qzjy/jsyjy/ws/index.htm). My research focuses on world models and computational neuroscience.
+I am currently a final-year Ph.D. student at Peking University, advised by Prof. [Si Wu](https://www.psy.pku.edu.cn/szdw/qzjy/jsyjy/ws/index.htm). My research focuses on world models and computational neuroscience.
 
 My current research interests are:
 - **Latent World Models**: brain-inspired world models, latent action models, structure learning.
